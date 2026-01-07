@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkDex - Mi Biblioteca Personal de Enlaces</title>
+    <link rel="icon" type="image/png" href="assets/logo_linkdex_512.png?v=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root { --linkdex-blue: #0060A8; }
+        .bg-linkdex { background-color: var(--linkdex-blue); }
+        .text-linkdex { color: var(--linkdex-blue); }
+        .hero-gradient { background: linear-gradient(135deg, #0060A8 0%, #003a66 100%); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .link-card:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+        html { scroll-behavior: smooth; }
+        .sidebar-active { color: var(--linkdex-blue); font-weight: bold; background: #f0f7ff; border-right: 4px solid var(--linkdex-blue); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900">
+
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <img src="assets/logo_linkdex_512.png" alt="Logo" class="w-10 h-10 rounded-xl shadow-sm">
+                <span class="text-2xl font-bold text-linkdex italic tracking-tighter">LinkDex</span>
+            </div>
+            <div class="hidden md:flex gap-8 font-medium text-gray-600">
+                <a href="#features" data-i18n="nav_features">Funciones</a>
+                <a href="#screenshots" data-i18n="nav_gallery">Galería</a>
+                <a href="#web-app" data-i18n="nav_webapp">Web App</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="scrollToSection('web-app')" class="bg-linkdex text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-800 transition shadow-md" data-i18n="nav_login">Iniciar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-gradient text-white py-16 md:py-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight" data-i18n="hero_title">Tu biblioteca personal.<br><span class="text-blue-200">Organiza el internet.</span></h1>
+                <p class="text-lg mb-8 opacity-90" data-i18n="hero_desc">Guarda y encuentra tus enlaces favoritos de Instagram, YouTube y la web en segundos. El orden que siempre quisiste, ahora en todos tus dispositivos.</p>
+                <div class="flex gap-4">
+                    <a href="https://play.google.com/store/apps/details?id=com.dextersoft.linkdex" target="_blank" class="transition hover:scale-105">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="h-12">
+                    </a>
+                    <button onclick="showIosAlert()" class="transition hover:scale-105">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" class="h-12">
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-center relative">
+                <img src="assets/aplicacion.jpeg" class="w-64 rounded-[3rem] shadow-2xl border-[8px] border-gray-900 z-10 rotate-3">
+                <img src="assets/presentacion.jpg" class="absolute -left-20 bottom-0 w-72 rounded-2xl opacity-20 hidden lg:block -rotate-12">
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-20 max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-16" data-i18n="feat_title">Todo lo que necesitas</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-8 bg-white rounded-3xl shadow-sm border border-gray-100 link-card">
+                <i class="fas fa-folder-open text-3xl text-linkdex mb-4"></i>
+                <h3 class="font-bold text-xl mb-2" data-i18n="feat_1_t">Organización sin límites</h3>
+                <p class="text-gray-600" data-i18n="feat_1_d">Clasifica tus Reels, vídeos y artículos en carpetas personalizadas. Usa etiquetas para un control total y encuentra todo en segundos.</p>
+            </div>
+            <div class="p-8 bg-white rounded-3xl shadow-sm border border-gray-100 link-card">
+                <i class="fas fa-search text-3xl text-linkdex mb-4"></i>
+                <h3 class="font-bold text-xl mb-2" data-i18n="feat_2_t">Encuentra al instante</h3>
+                <p class="text-gray-600" data-i18n="feat_2_d">Nuestra búsqueda inteligente escanea títulos y etiquetas simultáneamente. Filtra por fecha o nombre para tener tu biblioteca siempre en orden.</p>
+            </div>
+            <div class="p-8 bg-white rounded-3xl shadow-sm border border-gray-100 link-card">
+                <i class="fas fa-cloud-upload-alt text-3xl text-linkdex mb-4"></i>
+                <h3 class="font-bold text-xl mb-2" data-i18n="feat_3_t">Tu mundo sincronizado</h3>
+                <p class="text-gray-600" data-i18n="feat_3_d">Tus enlaces te siguen a todas partes. Accede desde Android, Web y próximamente iOS, con la seguridad de Google Firebase.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screenshots" class="py-20 bg-gray-100 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12" data-i18n="gallery_title">Capturas de Pantalla</h2>
+            <div class="flex overflow-x-auto gap-6 pb-10 hide-scrollbar snap-x">
+                <img src="assets/aplicacion.jpeg" class="h-[500px] rounded-[2rem] shadow-lg snap-center">
+                <img src="assets/add link.jpeg" class="h-[500px] rounded-[2rem] shadow-lg snap-center">
+                <img src="assets/premium.jpeg" class="h-[500px] rounded-[2rem] shadow-lg snap-center">
+                <img src="assets/setting.jpeg" class="h-[500px] rounded-[2rem] shadow-lg snap-center">
+                <img src="assets/help.jpeg" class="h-[500px] rounded-[2rem] shadow-lg snap-center">
+                <img src="assets/about.jpeg" class="h-[500px] rounded-[2rem] shadow-lg snap-center">
+            </div>
+        </div>
+    </section>
+
+    <section id="web-app" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-gray-50 rounded-[3rem] p-4 md:p-12 border border-gray-100 shadow-inner min-h-[600px]">
+                <div id="auth-ui" class="text-center py-20">
+                    <h2 class="text-3xl font-bold mb-4" data-i18n="web_title">Accede a tus enlaces</h2>
+                    <p class="text-gray-500 mb-8" data-i18n="web_subtitle">Inicia sesión con tu cuenta de Google para ver tu biblioteca.</p>
+                    <button onclick="login()" class="bg-white border-2 border-gray-200 flex items-center gap-3 px-8 py-4 rounded-2xl mx-auto hover:bg-gray-50 transition shadow-sm font-bold">
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
+                        <span data-i18n="btn_login">Continuar con Google</span>
+                    </button>
+                </div>
+
+                <div id="dashboard-ui" class="hidden">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b pb-6 gap-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-linkdex" data-i18n="dash_title">Mi Biblioteca</h2>
+                            <div id="user-status-bar" class="mt-2 text-sm font-medium">
+                                </div>
+                        </div>
+                        <button onclick="logout()" class="bg-red-50 text-red-500 px-4 py-2 rounded-xl font-bold hover:bg-red-100 transition" data-i18n="btn_logout">Cerrar Sesión</button>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row gap-8">
+                        <aside class="w-full md:w-64 bg-white rounded-3xl p-4 shadow-sm border border-gray-100 h-fit sticky top-24">
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 px-4">Carpetas</h3>
+                            <nav id="folders-list" class="flex flex-col gap-1">
+                                </nav>
+                        </aside>
+
+                        <div class="flex-grow">
+                            <div id="links-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 max-w-5xl mx-auto px-4">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <a href="about.html" class="inline-block mb-8">
+                <div class="w-48 h-48 rounded-full border-4 border-gray-100 shadow-xl overflow-hidden mx-auto hover:scale-105 transition-transform duration-300">
+                <img src="assets/foto.jpeg" alt="Dr. Victor Oviedo" class="w-full h-full object-cover">
+                </div>
+            </a>
+            <a href="about.html" class="block group">
+            <h2 class="text-4xl font-bold text-gray-900 mb-2 group-hover:text-linkdex transition-colors">Dr. Victor Oviedo</h2>
+            </a>
+            <p class="text-xl text-gray-600 mb-8" data-i18n="author_subtitle">Médico y Desarrollador apasionado por crear herramientas que simplifiquen la vida digital.</p>
+            <div class="flex justify-center gap-6 text-3xl text-linkdex">
+                <a href="https://instagram.com/drvictoroviedo" target="_blank" class="hover:opacity-75 transition-opacity"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:soporte-linkdex@dr-dex.net" target="_blank" class="hover:opacity-75 transition-opacity"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 text-center border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <img src="assets/logo_linkdex_512.png" class="w-10 h-10 mx-auto mb-4 rounded-lg opacity-50">
+            <p class="text-sm mb-4" data-i18n="footer_copy">© 2026 LinkDex. Todos los derechos reservados.</p>
+            <div class="flex justify-center gap-6 text-xs uppercase tracking-widest">
+                <a href="privacidad.html" class="hover:text-white transition-colors" data-i18n="nav_privacy">Política de Privacidad</a>
+                <a href="about.html" class="hover:text-white transition-colors" data-i18n="nav_about">Sobre el Autor</a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCOEggsBE7d_1cw2RTReXcNXSmx64Ym6jo",
+            authDomain: "linkdex-67234.firebaseapp.com",
+            projectId: "linkdex-67234",
+            storageBucket: "linkdex-67234.firebasestorage.app", // ✅ Corregido según tu firebase_options
+            messagingSenderId: "1029486841879",
+            appId: "1:1029486841879:web:904691b95b3f0dec3b8c52"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+
+        let allLinks = [];
+        let currentFolder = "Todos";
+
+        cconst i18n = {
+            es: {
+                nav_features: "Funciones", nav_gallery: "Galería", nav_webapp: "Web App", nav_login: "Iniciar Sesión",
+                hero_title: "Tu biblioteca personal.<br><span class='text-blue-200'>Organiza el internet.</span>",
+                hero_desc: "Guarda y encuentra tus enlaces favoritos de Instagram, YouTube y la web en segundos. El orden que siempre quisiste, ahora en todos tus dispositivos.",
+                feat_title: "Todo lo que necesitas",
+                feat_1_t: "Organización sin límites", feat_1_d: "Clasifica tus Reels, vídeos y artículos en carpetas personalizadas.",
+                feat_2_t: "Encuentra al instante", feat_2_d: "Nuestra búsqueda inteligente escanea títulos y etiquetas simultáneamente.",
+                feat_3_t: "Tu mundo sincronizado", feat_3_d: "Tus enlaces te siguen a todas partes. Accede desde Android, Web e iOS.",
+                gallery_title: "Capturas de Pantalla", web_title: "Accede a tus enlaces", web_subtitle: "Inicia sesión con tu cuenta de Google para ver tu biblioteca.",
+                btn_login: "Continuar con Google", dash_title: "Mi Biblioteca", btn_logout: "Cerrar Sesión",
+                author_subtitle: "Médico y Desarrollador apasionado por crear herramientas digitales.",
+                nav_privacy: "Política de Privacidad", nav_about: "Sobre el Autor",
+                footer_copy: "© 2026 LinkDex. Todos los derechos reservados.",
+                ios_coming_soon: "¡Próximamente! Lanzamiento en iOS en febrero de 2026.",
+                status_premium: "Usuario Premium", status_standard: "Plan Estándar",
+                links_saved: "links guardados"
+            },
+            en: {
+                nav_features: "Features", nav_gallery: "Gallery", nav_webapp: "Web App", nav_login: "Sign In",
+                hero_title: "Your personal library.<br><span class='text-blue-200'>Organize the web.</span>",
+                hero_desc: "Save and find your favorite links in seconds. The order you always wanted, now on all your devices.",
+                feat_title: "Everything you need",
+                feat_1_t: "Unlimited Organization", feat_1_d: "Sort your Reels, videos, and articles into custom folders.",
+                feat_2_t: "Find it Instantly", feat_2_d: "Our smart search scans titles and tags simultaneously.",
+                feat_3_t: "Your World, Synced", feat_3_d: "Your links follow you everywhere. Access from Android, Web, and iOS.",
+                gallery_title: "App Screenshots", web_title: "Access your links", web_subtitle: "Sign in with your Google account to view your library.",
+                btn_login: "Continue with Google", dash_title: "My Library", btn_logout: "Sign Out",
+                author_subtitle: "Doctor and Developer passionate about creating tools that simplify digital life.",
+                nav_privacy: "Privacy Policy", nav_about: "About the Author",
+                footer_copy: "© 2026 LinkDex. All rights reserved.",
+                ios_coming_soon: "Coming soon! Launching on iOS in February 2026.",
+                status_premium: "Premium User", status_standard: "Standard Plan",
+                links_saved: "links saved"
+            },
+            pt: {
+                nav_features: "Recursos", nav_gallery: "Galeria", nav_webapp: "Web App", nav_login: "Entrar",
+                hero_title: "Sua biblioteca pessoal.<br><span class='text-blue-200'>Organize a internet.</span>",
+                hero_desc: "Salve e encontre seus links favoritos em segundos. A ordem que você sempre quis.",
+                feat_title: "Tudo o que você precisa",
+                feat_1_t: "Organização sem limites", feat_1_d: "Classifique seus Reels, vídeos e artigos em pastas personalizadas.",
+                feat_2_t: "Encontre instantaneamente", feat_2_d: "Nossa busca inteligente varre títulos e tags simultaneamente.",
+                feat_3_t: "Seu mundo sincronizado", feat_3_d: "Seus links seguem você em qualquer lugar. Android, Web e iOS.",
+                gallery_title: "Capturas de Tela", web_title: "Acesse seus links", web_subtitle: "Faça login com sua conta do Google para ver sua biblioteca.",
+                btn_login: "Continuar com Google", dash_title: "Minha Biblioteca", btn_logout: "Sair",
+                author_subtitle: "Médico e Desenvolvedor apaixonado por criar ferramentas digitais.",
+                nav_privacy: "Política de Privacidade", nav_about: "Sobre o Autor",
+                footer_copy: "© 2026 LinkDex. Todos os direitos reservados.",
+                ios_coming_soon: "Em breve! Lançamento no iOS em fevereiro de 2026.",
+                status_premium: "Usuário Premium", status_standard: "Plano Padrão",
+                links_saved: "links salvos"
+            },
+            fr: {
+                nav_features: "Fonctions", nav_gallery: "Galerie", nav_webapp: "Web App", nav_login: "Connexion",
+                hero_title: "Votre bibliothèque perso.<br><span class='text-blue-200'>Organisez le web.</span>",
+                hero_desc: "Enregistrez vos liens favoris. L'ordre que vous avez toujours voulu, sur tous vos appareils.",
+                feat_title: "Tout ce dont vous avez besoin",
+                feat_1_t: "Organisation sans limites", feat_1_d: "Classez vos Reels, vidéos et articles dans des dossiers personnalisés.",
+                feat_2_t: "Trouvez instantanément", feat_2_d: "Notre recherche intelligente scanne les titres et les tags simultanément.",
+                feat_3_t: "Votre monde synchronisé", feat_3_d: "Vos liens vous suivent partout. Accès via Android, Web et iOS.",
+                gallery_title: "Captures d'écran", web_title: "Accédez à vos liens", web_subtitle: "Connectez-vous avec Google pour voir votre bibliothèque.",
+                btn_login: "Continuer with Google", dash_title: "Ma Bibliothèque", btn_logout: "Déconnexion",
+                author_subtitle: "Médecin et Développeur passionné par la création d'outils numériques.",
+                nav_privacy: "Politique de Confidentialité", nav_about: "À propos de l'auteur",
+                footer_copy: "© 2026 LinkDex. Tous droits réservés.",
+                ios_coming_soon: "Bientôt disponible ! Lancement sur iOS en février 2026.",
+                status_premium: "Utilisateur Premium", status_standard: "Version Gratuite",
+                links_saved: "liens enregistrés"
+            },
+            de: {
+                nav_features: "Funktionen", nav_gallery: "Galerie", nav_webapp: "Web App", nav_login: "Anmelden",
+                hero_title: "Deine persönliche Bibliothek.<br><span class='text-blue-200'>Ordne das Internet.</span>",
+                hero_desc: "Speichere deine Lieblingslinks. Die Ordnung, die du immer wolltest, jetzt auf allen Geräten.",
+                feat_title: "Alles, was du brauchst",
+                feat_1_t: "Grenzenlose Organisation", feat_1_d: "Sortieren Sie Ihre Reels, Videos und Artikel in eigene Ordner.",
+                feat_2_t: "Sofort finden", feat_2_d: "Unsere intelligente Suche scannt Titel und Tags gleichzeitig.",
+                feat_3_t: "Ihre Welt, synchronisiert", feat_3_d: "Ihre Links folgen Ihnen überall hin. Android, Web und bald iOS.",
+                gallery_title: "App-Screenshots", web_title: "Zugriff auf deine Links", web_subtitle: "Melde dich mit deinem Google-Konto an.",
+                btn_login: "Weiter mit Google", dash_title: "Meine Bibliothek", btn_logout: "Abmelden",
+                author_subtitle: "Arzt und Entwickler mit Leidenschaft für digitale Tools.",
+                nav_privacy: "Datenschutzrichtlinie", nav_about: "Über den Autor",
+                footer_copy: "© 2026 LinkDex. Alle Rechte vorbehalten.",
+                ios_coming_soon: "Demnächst! iOS-Launch im Februar 2026.",
+                status_premium: "Premium-Benutzer", status_standard: "Basis-Plan",
+                links_saved: "Links gespeichert"
+            },
+            it: {
+                nav_features: "Funzioni", nav_gallery: "Galleria", nav_webapp: "Web App", nav_login: "Accedi",
+                hero_title: "La tua libreria personale.<br><span class='text-blue-200'>Organizza il web.</span>",
+                hero_desc: "Salva i tuoi link preferiti. L'ordine che hai sempre desiderato, ora su tutti i tuoi dispositivi.",
+                feat_title: "Tutto ciò di cui hai bisogno",
+                feat_1_t: "Organizzazione senza limiti", feat_1_d: "Classifica i tuoi Reel, video e articoli in cartelle personalizzate.",
+                feat_2_t: "Trova all'istante", feat_2_d: "La nostra ricerca intelligente scansiona titoli e tag contemporaneamente.",
+                feat_3_t: "Il tuo mondo sincronizzato", feat_3_d: "I tuoi link ti seguono ovunque. Android, Web e presto iOS.",
+                gallery_title: "Screenshot dell'App", web_title: "Accedi ai tuoi link", web_subtitle: "Accedi con il tuo account Google.",
+                btn_login: "Continua con Google", dash_title: "La mia Libreria", btn_logout: "Esci",
+                author_subtitle: "Medico e Sviluppatore appassionato di creazione di strumenti digitali.",
+                nav_privacy: "Informativa sulla Privacy", nav_about: "Sull'Autore",
+                footer_copy: "© 2026 LinkDex. Tutti i diritti riservati.",
+                ios_coming_soon: "In arrivo! Lancio su iOS a febbraio 2026.",
+                status_premium: "Utente Premium", status_standard: "Piano Standard",
+                links_saved: "link salvati"
+            }
+        };
+
+        window.showIosAlert = () => {
+            const lang = navigator.language.split('-')[0];
+            const message = i18n[lang]?.ios_coming_soon || i18n.en.ios_coming_soon;
+            alert(message);
+        };
+
+        function getI18n() {
+            const lang = navigator.language.split('-')[0];
+            return i18n[lang] || i18n.en;
+        }
+
+        function translate() {
+            const content = getI18n();
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (content[key]) el.innerHTML = content[key];
+            });
+        }
+        translate();
+
+        window.login = () => signInWithPopup(auth, new GoogleAuthProvider());
+        window.logout = () => {
+            signOut(auth);
+            location.reload();
+        };
+        window.scrollToSection = (id) => document.getElementById(id).scrollIntoView();
+
+        onAuthStateChanged(auth, async (user) => {
+            const authUi = document.getElementById('auth-ui');
+            const dashUi = document.getElementById('dashboard-ui');
+            if (user) {
+                authUi.classList.add('hidden');
+                dashUi.classList.remove('hidden');
+                await syncData(user.uid);
+            } else {
+                authUi.classList.remove('hidden');
+                dashUi.classList.add('hidden');
+            }
+        });
+
+        async function syncData(uid) {
+            const statusBar = document.getElementById('user-status-bar');
+            const t = getI18n();
+
+            try {
+                // 1. Obtener metadatos de Firestore (Premium status) 
+                const userSnap = await getDoc(doc(db, "users", uid));
+                const isPremium = userSnap.exists() ? userSnap.data().isPremium : false;
+
+                // 2. Intentar descargar el JSON de Storage 
+                const backupRef = ref(storage, `backups/${uid}/links_backup.json`);
+                const urlJSON = await getDownloadURL(backupRef);
+                const response = await fetch(urlJSON);
+                allLinks = await response.json();
+
+                // 3. Actualizar barra de estatus
+                const count = allLinks.length;
+                if (isPremium) {
+                    statusBar.innerHTML = `<span class="text-amber-500"><i class="fas fa-crown mr-1"></i> ${t.status_premium}</span> • ${count} ${t.links_saved}`;
+                } else {
+                    statusBar.innerHTML = `<span class="text-blue-500">${t.status_standard}</span> • ${count}/50 ${t.links_saved}`;
+                }
+
+                renderFolders();
+                renderLinks();
+
+            } catch (error) {
+                console.error("Error en sincronización:", error);
+                document.getElementById('links-grid').innerHTML = `
+                    <div class="col-span-full text-center py-20">
+                        <i class="fas fa-mobile-alt text-4xl text-gray-300 mb-4"></i>
+                        <p class="text-gray-500">Usa la App móvil para sincronizar tus enlaces por primera vez.</p>
+                    </div>`;
+            }
+        }
+
+        function renderFolders() {
+            const list = document.getElementById('folders-list');
+            const folders = ["Todos", ...new Set(allLinks.map(l => l.groupName))].filter(f => f !== "Todos");
+            
+            let html = `
+                <button onclick="filterByFolder('Todos')" class="flex items-center gap-3 px-4 py-3 rounded-2xl w-full text-left transition ${currentFolder === 'Todos' ? 'sidebar-active' : 'hover:bg-gray-100 text-gray-600'}">
+                    <i class="fas fa-th-large w-5"></i> Todos
+                </button>`;
+
+            folders.sort().forEach(folder => {
+                html += `
+                    <button onclick="filterByFolder('${folder}')" class="flex items-center gap-3 px-4 py-3 rounded-2xl w-full text-left transition ${currentFolder === folder ? 'sidebar-active' : 'hover:bg-gray-100 text-gray-600'}">
+                        <i class="fas fa-folder w-5"></i> ${folder}
+                    </button>`;
+            });
+
+            list.innerHTML = html;
+        }
+
+        window.filterByFolder = (folder) => {
+            currentFolder = folder;
+            renderFolders();
+            renderLinks();
+        };
+
+        function renderLinks() {
+            const grid = document.getElementById('links-grid');
+            grid.innerHTML = "";
+
+            const filtered = currentFolder === "Todos" 
+                ? allLinks 
+                : allLinks.filter(l => l.groupName === currentFolder);
+
+            // Ordenar por fecha descendente
+            filtered.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            filtered.forEach(link => {
+                const thumb = link.thumbnailUrl || `https://www.google.com/s2/favicons?sz=128&domain_url=${link.url}`;
+                const hostname = new URL(link.url).hostname.replace('www.', '');
+                
+                grid.innerHTML += `
+                    <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 link-card cursor-pointer flex flex-col h-full group" onclick="window.open('${link.url}', '_blank')">
+                        <div class="relative w-full h-32 mb-4 overflow-hidden rounded-2xl bg-gray-100">
+                            <img src="${thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://www.google.com/s2/favicons?sz=128&domain_url=${link.url}'">
+                        </div>
+                        <h4 class="font-bold text-sm line-clamp-2 mb-2 flex-grow text-gray-800">${link.title || 'Sin título'}</h4>
+                        <div class="flex items-center justify-between mt-4">
+                            <p class="text-[10px] text-linkdex font-bold uppercase tracking-widest">${hostname}</p>
+                            <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[9px] rounded-lg font-bold">${link.groupName || 'General'}</span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>

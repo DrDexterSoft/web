@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>LinkDex - Redirigiendo</title>
+    <script type="text/javascript">
+        // Redirección inmediata
+        // Usamos la URL completa para evitar problemas de rutas relativas en Netlify
+        var targetURL = "./linkdex/index.html";
+        
+        if (window.location.protocol !== 'file:') {
+            window.location.replace(targetURL);
+        }
+    </script>
+    <meta http-equiv="refresh" content="2; url=./linkdex/index.html">
+</head>
+<body style="background: #0060A8; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; margin: 0;">
+    <div style="text-align: center;">
+        <h2 style="margin-bottom: 20px;">Redirigiendo a tu biblioteca...</h2>
+        <p>Si no eres redirigido en 2 segundos, <a href="./linkdex/index.html" style="color: #93C5FD; font-weight: bold;">haz clic aquí</a>.</p>
+    </div>
+</body>
+</html>
