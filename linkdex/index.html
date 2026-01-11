@@ -341,7 +341,7 @@
                 const isPremium = userSnap.exists() ? userSnap.data().isPremium : false;
 
                 // 2. Intentar descargar el JSON de Storage 
-                const backupRef = ref(storage, `backups/${uid}/backup.json`);
+                backups/${uid}/links_backup.json
                 const urlJSON = await getDownloadURL(backupRef);
                 const response = await fetch(urlJSON);
                 allLinks = await response.json();
