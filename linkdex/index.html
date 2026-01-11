@@ -332,22 +332,23 @@
         });
 
         async function syncData(uid) {
-            const statusBar = document.getElementById('user-status-bar');
-            const t = getI18n();
+    const statusBar = document.getElementById('user-status-bar');
+    const t = getI18n();
 
-            try {
-                // 1. Obtener metadatos de Firestore (Premium status) 
-                const userSnap = await getDoc(doc(db, "users", uid));
-                const isPremium = userSnap.exists() ? userSnap.data().isPremium : false;
+    try {
+        // 1. Obtener metadatos de Firestore (Premium status) 
+        const userSnap = await getDoc(doc(db, "users", uid));
+        const isPremium = userSnap.exists() ? userSnap.data().isPremium : false;
 
-                // 2. Intentar descargar el JSON de Storage 
-                const backupRef = ref(storage, `backups/${uid}/links_backup.json`);
-                const urlJSON = await getDownloadURL(backupRef);
-                const response = await fetch(urlJSON);
-                allLinks = await response.json();
+        // 2. RUTA CORRECTA AL JSON (basada en tu link)
+        const backupRef = ref(storage, `backups/${uid}/links_backup.json`);
+        const urlJSON = await getDownloadURL(backupRef);
+        
+        const response = await fetch(urlJSON);
+        allLinks = await response.json();
 
-                // 3. Actualizar barra de estatus
-                const count = allLinks.length;
+        // 3. Actualizar UI
+        const count = allLinks.length;
                 if (isPremium) {
                     statusBar.innerHTML = `<span class="text-amber-500"><i class="fas fa-crown mr-1"></i> ${t.status_premium}</span> • ${count} ${t.links_saved}`;
                 } else {
