@@ -165,10 +165,10 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-        
+
         const firebaseConfig = {
             apiKey: "AIzaSyCOEggsBE7d_1cw2RTReXcNXSmx64Ym6jo",
             authDomain: "linkdex-67234.firebaseapp.com", // Usa tu dominio personalizado aquí
@@ -311,7 +311,7 @@
         }
         translate();
 
-        window.login = () => signInWithRedirect(auth, new GoogleAuthProvider());
+        window.login = () => signInWithPopup(auth, new GoogleAuthProvider());
         window.logout = () => {
             signOut(auth);
             location.reload();
