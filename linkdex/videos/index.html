@@ -12,12 +12,7 @@
     .text-linkdex { color: var(--linkdex-blue); }
     summary::-webkit-details-marker { display: none; }
     summary { list-style: none; }
-    
-    /* Ajuste fino para asegurar que el video sea vertical */
-    video {
-      object-fit: cover;
-      background-color: #000;
-    }
+    video { object-fit: cover; background-color: #000; }
   </style>
 </head>
 
@@ -35,36 +30,30 @@
   <main class="max-w-5xl mx-auto p-4 md:p-6">
     <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 md:p-8">
 
-      <div class="text-center md:text-left mb-6">
+      <div class="mb-6">
         <h1 id="pageTitle" class="text-2xl md:text-3xl font-extrabold text-linkdex">LinkDex</h1>
         <p id="pageSubtitle" class="text-gray-600 mt-1"></p>
       </div>
 
-      <div class="flex justify-center my-8">
+      <div class="mt-5 mb-8">
+        <div id="guide" class="max-w-none"></div>
+
+        <details id="guideDetails" class="mt-3 group">
+          <summary id="toggleSummary" class="cursor-pointer text-sm font-bold text-linkdex hover:opacity-80 flex items-center gap-2">
+            <span class="inline-block transform group-open:rotate-90 transition-transform duration-200 text-[10px]">▶</span>
+            <span id="labelTxt">Abrir guía de uso</span>
+          </summary>
+          <div id="guideFull" class="mt-4 bg-gray-50 p-5 rounded-2xl border border-gray-100"></div>
+        </details>
+      </div>
+
+      <div class="flex justify-center my-10">
         <div class="relative w-[85%] sm:w-[300px] md:w-[320px] aspect-[9/16] bg-black rounded-[2.5rem] overflow-hidden shadow-2xl border-[8px] border-gray-900 ring-1 ring-gray-200">
-          <video 
-            id="vid" 
-            class="absolute inset-0 w-full h-full" 
-            controls 
-            playsinline 
-            preload="metadata">
-          </video>
+          <video id="vid" class="absolute inset-0 w-full h-full" controls playsinline preload="metadata"></video>
         </div>
       </div>
 
       <p id="err" class="mt-4 text-sm text-red-600 hidden text-center bg-red-50 p-3 rounded-xl"></p>
-
-      <div class="mt-8 border-t border-gray-100 pt-8">
-        <div id="guide" class="max-w-none mb-4"></div>
-
-        <details id="guideDetails" class="group">
-          <summary id="toggleSummary" class="cursor-pointer text-sm font-bold text-linkdex hover:opacity-80 flex items-center gap-2">
-            <span class="inline-block transform group-open:rotate-90 transition-transform duration-200 text-[10px]">▶</span>
-            <span id="labelTxt">...</span>
-          </summary>
-          <div id="guideFull" class="mt-6 bg-gray-50 p-5 rounded-2xl border border-gray-100"></div>
-        </details>
-      </div>
 
       <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center border-t border-gray-100 pt-8">
         <a href="https://play.google.com/store/apps/details?id=com.dextersoft.linkdex"
@@ -83,67 +72,69 @@
 
     const HELP_TEXTS = {
       es: {
-        pageSubtitle: "Mirá este video corto para aprender a usar LinkDex.",
-        headerTitle: "Guía de LinkDex",
-        toggleShow: "→ Abrir guía de uso completa",
-        toggleHide: "↓ Ocultar guía de uso",
+        pageSubtitle: "Mirá este video corto (menos de 1 minuto). Se selecciona automáticamente según el idioma de tu navegador.",
+        headerTitle: "Tu Guía en LinkDex",
+        toggleShow: "Abrir guía de uso completa",
+        toggleHide: "Ocultar guía completa",
         sections: [
-          { title: "¿Qué es LinkDex?", body: "Tu biblioteca personal de internet. Guardá y organizá todo con **Grupos y Tags**." },
-          { title: "Uso Rápido", body: "Compartí cualquier link desde tu navegador o apps favoritas directamente a LinkDex." },
-          { title: "Cuentas", body: "Iniciá sesión con Google o Apple para mantener tus links sincronizados en la nube." },
-          { title: "Tips", body: "Mantené presionado un link para selección múltiple. Usá la lupa para búsquedas globales." }
+          { title: "¿Qué es LinkDex?", body: "Imagina tener tu propia **biblioteca personal de internet**. LinkDex no es solo un marcador; es el lugar donde guardas artículos, videos, recetas, productos o perfiles de redes sociales que te inspiran.\n\nTodo se organiza a tu manera mediante **Grupos y Tags**, permitiéndote encontrar ese enlace especial en cuestión de segundos." },
+          { title: "Uso General", body: "1. Desde cualquier aplicación o sitio web, toca 'compartir' y elige LinkDex, o copia el link y agrégalo dentro de la aplicación.\n\n2. Elige un grupo, edita el título, opcionalmente agrega tags (separados por comas) para facilitar la búsqueda." },
+          { title: "Registros y Cuentas", body: "Si usas una **Cuenta Anónima**, tus links viven solo en este teléfono. Al registrarte con Google, Apple o Correo, activas la **Sincronización en la Nube**." },
+          { title: "Manejo de Links", body: "Mantén presionado cualquier link para activar la **Selección Múltiple**. Esto te permite mover o borrar grandes bloques de enlaces a la vez.\n\nCon la **Búsqueda Global**, puedes localizar contenido por título o por etiquetas." },
+          { title: "Imágenes y Miniaturas", body: "LinkDex utiliza Miniaturas Inteligentes. Si un link no muestra imagen, puedes usar la opción 'Reparar miniatura' en el menú del enlace para intentar un escaneo profundo." }
         ]
       },
       en: {
-        pageSubtitle: "Watch this short video to learn how to use LinkDex.",
-        headerTitle: "LinkDex Guide",
-        toggleShow: "→ Open full user guide",
-        toggleHide: "↓ Hide user guide",
+        pageSubtitle: "Watch this short video (under 1 minute). It is automatically selected based on your browser language.",
+        headerTitle: "Your Guide to LinkDex",
+        toggleShow: "Open full user guide",
+        toggleHide: "Hide full guide",
         sections: [
-          { title: "What is LinkDex?", body: "Your personal internet library. Save and organize everything with **Groups and Tags**." },
-          { title: "Quick Use", body: "Share any link from your browser or favorite apps directly to LinkDex." },
-          { title: "Accounts", body: "Sign in with Google or Apple to keep your links synced in the cloud." },
-          { title: "Tips", body: "Long-press a link for multi-selection. Use the search icon for global search." }
+          { title: "What is LinkDex?", body: "Imagine having your own **personal internet library**. LinkDex isn't just a bookmark manager; it's the place where you store articles, videos, recipes, or profiles that inspire you." },
+          { title: "General Use", body: "1. From any app, tap 'share' and choose LinkDex, or copy/paste the link inside the app.\n\n2. Choose a group, edit the title, and add tags for easy searching." },
+          { title: "Accounts", body: "Anonymous accounts are local. Use Google, Apple, or Email for **Cloud Sync** to keep your links backed up and available on any device." },
+          { title: "Managing Links", body: "Long-press any link for **Multi-Selection**. Use **Global Search** to find content by title or tags." },
+          { title: "Thumbnails", body: "If an image is missing, use 'Repair thumbnail' in the link menu for a deep scan." }
         ]
       },
       fr: {
-        pageSubtitle: "Regardez cette vidéo pour apprendre à utiliser LinkDex.",
-        headerTitle: "Guide LinkDex",
-        toggleShow: "→ Ouvrir le guide d'utilisation",
-        toggleHide: "↓ Masquer le guide",
+        pageSubtitle: "Regardez cette courte vidéo (moins d'une minute).",
+        headerTitle: "Votre Guide LinkDex",
+        toggleShow: "Ouvrir le guide complet",
+        toggleHide: "Masquer le guide",
         sections: [
-          { title: "C'est quoi LinkDex ?", body: "Votre bibliothèque internet personnelle." },
-          { title: "Utilisation", body: "Partagez des liens vers LinkDex depuis n'importe quelle application." }
+          { title: "Qu'est-ce que LinkDex ?", body: "Votre propre **bibliothèque personnelle d'internet**." },
+          { title: "Utilisation", body: "Appuyez sur 'partager' et choisissez LinkDex, o copiez le lien." }
         ]
       },
       it: {
-        pageSubtitle: "Guarda questo video per imparare a usare LinkDex.",
-        headerTitle: "Guida LinkDex",
-        toggleShow: "→ Apri la guida all'uso",
-        toggleHide: "↓ Nascondi la guida",
+        pageSubtitle: "Guarda questo breve video (meno di 1 minuto).",
+        headerTitle: "La tua Guida LinkDex",
+        toggleShow: "Apri la guida completa",
+        toggleHide: "Nascondi la guida",
         sections: [
-          { title: "Cos'è LinkDex?", body: "La tua biblioteca personale per salvare e organizzare link." },
-          { title: "Utilizzo", body: "Condividi contenuti con LinkDex o incolla i link nell'app." }
+          { title: "Cos'è LinkDex?", body: "La tua **biblioteca personale di internet**." },
+          { title: "Utilizzo", body: "Tocca 'condividi' e scegli LinkDex, o copia il link." }
         ]
       },
       pt: {
-        pageSubtitle: "Assista a este vídeo para aprender a usar o LinkDex.",
-        headerTitle: "Guia do LinkDex",
-        toggleShow: "→ Abrir guia de uso completo",
-        toggleHide: "↓ Ocultar guia de uso",
+        pageSubtitle: "Assista a este vídeo curto (menos de 1 minuto).",
+        headerTitle: "Seu Guia no LinkDex",
+        toggleShow: "Abrir guia de uso completo",
+        toggleHide: "Ocultar guia completo",
         sections: [
-          { title: "O que é o LinkDex?", body: "Sua própria biblioteca da internet personalizada." },
-          { title: "Como usar", body: "Compartilhe links com o LinkDex ou cole-os dentro do app." }
+          { title: "O que é o LinkDex?", body: "Sua própria **biblioteca pessoal da internet**." },
+          { title: "Uso Geral", body: "Toque em 'compartilhar' e escolha o LinkDex, ou copie o link." }
         ]
       },
       de: {
-        pageSubtitle: "Sieh dir dieses Video an, um LinkDex kennenzulernen.",
-        headerTitle: "LinkDex Leitfaden",
-        toggleShow: "→ Bedienungsanleitung öffnen",
-        toggleHide: "↓ Leitfaden ausblenden",
+        pageSubtitle: "Sieh dir dieses kurze Video an (unter 1 Minute).",
+        headerTitle: "Dein LinkDex Leitfaden",
+        toggleShow: "Bedienungsanleitung öffnen",
+        toggleHide: "Leitfaden ausblenden",
         sections: [
-          { title: "Was ist LinkDex?", body: "Deine eigene Internet-Bibliothek mit Gruppen und Tags." },
-          { title: "Nutzung", body: "Links mit LinkDex teilen oder in der App einfügen." }
+          { title: "Was ist LinkDex?", body: "Deine eigene **persönliche Internet-Bibliothek**." },
+          { title: "Nutzung", body: "Tippen Sie auf 'Teilen' und wählen Sie LinkDex." }
         ]
       }
     };
