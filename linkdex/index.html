@@ -22,6 +22,21 @@
 </head>
 <body class="bg-gray-50 font-sans text-gray-900">
 
+<div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[60] hidden backdrop-blur-sm" onclick="toggleMenu()"></div>
+<div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-white z-[70] shadow-2xl translate-x-full transition-transform duration-300 flex flex-col p-6 md:hidden">
+    <div class="flex justify-end mb-8">
+        <button onclick="toggleMenu()" class="text-gray-500 text-2xl"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="flex flex-col gap-6 font-bold text-gray-800 text-lg">
+        <a href="#features" onclick="toggleMenu()" data-i18n="nav_features">Funciones</a>
+        <a href="#screenshots" onclick="toggleMenu()" data-i18n="nav_gallery">Galería</a>
+        <a href="/videos/" data-i18n="nav_guide">Guía de uso</a>
+        <a href="#web-app" onclick="toggleMenu()" data-i18n="nav_webapp">Web App</a>
+        <hr class="border-gray-100">
+        <button onclick="toggleMenu(); scrollToSection('web-app')" class="bg-linkdex text-white px-5 py-3 rounded-2xl text-sm font-bold shadow-md" data-i18n="nav_login">Iniciar Sesión</button>
+    </nav>
+</div>
+
     <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2">
@@ -34,15 +49,19 @@
                 <a href="/videos/" data-i18n="nav_guide">Guía de uso</a>
                 <a href="#web-app" data-i18n="nav_webapp">Web App</a>
             </div>
-            <div class="flex items-center gap-4">
-                <button onclick="scrollToSection('web-app')" class="bg-linkdex text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-800 transition shadow-md" data-i18n="nav_login">Iniciar Sesión</button>
-            </div>
+<div class="flex items-center gap-4">
+    <button onclick="scrollToSection('web-app')" class="hidden md:block bg-linkdex text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-blue-800 transition shadow-md" data-i18n="nav_login">Iniciar Sesión</button>
+    
+    <button onclick="toggleMenu()" class="md:hidden text-linkdex text-2xl p-2">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
         </div>
     </nav>
 
     <header class="hero-gradient text-white py-16 md:py-28 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-            <div class="fade-in">
+<div class="fade-in text-center md:text-left">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight" data-i18n="hero_title">Tu biblioteca personal.<br><span class="text-blue-200">Organiza el internet.</span></h1>
                 <p class="text-lg mb-8 opacity-90" data-i18n="hero_desc">Guarda y encuentra tus enlaces favoritos de Instagram, YouTube y la web en segundos. El orden que siempre quisiste, ahora en todos tus dispositivos.</p>
                 <div class="flex gap-4">
@@ -422,6 +441,14 @@
                 `;
             });
         }
+       window.toggleMenu = () => {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('menu-overlay');
+            
+            menu.classList.toggle('translate-x-full');
+            menu.classList.toggle('translate-x-0');
+            overlay.classList.toggle('hidden');
+        };
     </script>
 </body>
 </html>
