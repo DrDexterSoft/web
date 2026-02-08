@@ -31,6 +31,7 @@
             <div class="hidden md:flex gap-8 font-medium text-gray-600">
                 <a href="#features" data-i18n="nav_features">Funciones</a>
                 <a href="#screenshots" data-i18n="nav_gallery">Galería</a>
+                <a href="/linkdex/videos/" data-i18n="nav_guide">Guía de uso</a>
                 <a href="#web-app" data-i18n="nav_webapp">Web App</a>
             </div>
             <div class="flex items-center gap-4">
@@ -171,9 +172,9 @@
 
         const firebaseConfig = {
             apiKey: "AIzaSyCOEggsBE7d_1cw2RTReXcNXSmx64Ym6jo",
-            authDomain: "linkdex-67234.firebaseapp.com", // Usa tu dominio personalizado aquí
+            authDomain: "linkdex-67234.firebaseapp.com",
             projectId: "linkdex-67234",
-            storageBucket: "linkdex-67234.firebasestorage.app",
+            storageBucket: "linkdex-67234.firebasestorage.app", // ✅ Corregido según tu firebase_options
             messagingSenderId: "1029486841879",
             appId: "1:1029486841879:web:904691b95b3f0dec3b8c52"
         };
@@ -188,7 +189,7 @@
 
         const i18n = {
             es: {
-                nav_features: "Funciones", nav_gallery: "Galería", nav_webapp: "Web App", nav_login: "Iniciar Sesión",
+                nav_features: "Funciones", nav_gallery: "Galería", nav_guide: "Guía de uso", nav_webapp: "Web App", nav_login: "Iniciar Sesión",
                 hero_title: "Tu biblioteca personal.<br><span class='text-blue-200'>Organiza el internet.</span>",
                 hero_desc: "Guarda y encuentra tus enlaces favoritos de Instagram, YouTube y la web en segundos. El orden que siempre quisiste, ahora en todos tus dispositivos.",
                 feat_title: "Todo lo que necesitas",
@@ -205,7 +206,7 @@
                 links_saved: "links guardados"
             },
             en: {
-                nav_features: "Features", nav_gallery: "Gallery", nav_webapp: "Web App", nav_login: "Sign In",
+                nav_features: "Features", nav_gallery: "Gallery", nav_guide: "How to use", nav_webapp: "Web App", nav_login: "Sign In",
                 hero_title: "Your personal library.<br><span class='text-blue-200'>Organize the web.</span>",
                 hero_desc: "Save and find your favorite links in seconds. The order you always wanted, now on all your devices.",
                 feat_title: "Everything you need",
@@ -222,7 +223,7 @@
                 links_saved: "links saved"
             },
             pt: {
-                nav_features: "Recursos", nav_gallery: "Galeria", nav_webapp: "Web App", nav_login: "Entrar",
+                nav_features: "Recursos", nav_gallery: "Galeria", nav_guide: "Guia de uso", nav_webapp: "Web App", nav_login: "Entrar",
                 hero_title: "Sua biblioteca pessoal.<br><span class='text-blue-200'>Organize a internet.</span>",
                 hero_desc: "Salve e encontre seus links favoritos em segundos. A ordem que você sempre quis.",
                 feat_title: "Tudo o que você precisa",
@@ -239,7 +240,7 @@
                 links_saved: "links salvos"
             },
             fr: {
-                nav_features: "Fonctions", nav_gallery: "Galerie", nav_webapp: "Web App", nav_login: "Connexion",
+                nav_features: "Fonctions", nav_gallery: "Galerie", nav_guide: "Guide d’utilisation", nav_webapp: "Web App", nav_login: "Connexion",
                 hero_title: "Votre bibliothèque perso.<br><span class='text-blue-200'>Organisez le web.</span>",
                 hero_desc: "Enregistrez vos liens favoris. L'ordre que vous avez toujours voulu, sur tous vos appareils.",
                 feat_title: "Tout ce dont vous avez besoin",
@@ -256,7 +257,7 @@
                 links_saved: "liens enregistrés"
             },
             de: {
-                nav_features: "Funktionen", nav_gallery: "Galerie", nav_webapp: "Web App", nav_login: "Anmelden",
+                nav_features: "Funktionen", nav_gallery: "Galerie", nav_guide: "Anleitung", nav_webapp: "Web App", nav_login: "Anmelden",
                 hero_title: "Deine persönliche Bibliothek.<br><span class='text-blue-200'>Ordne das Internet.</span>",
                 hero_desc: "Speichere deine Lieblingslinks. Die Ordnung, die du immer wolltest, jetzt auf allen Geräten.",
                 feat_title: "Alles, was du brauchst",
@@ -273,7 +274,7 @@
                 links_saved: "Links gespeichert"
             },
             it: {
-                nav_features: "Funzioni", nav_gallery: "Galleria", nav_webapp: "Web App", nav_login: "Accedi",
+                nav_features: "Funzioni", nav_gallery: "Galleria", nav_guide: "Guida all’uso", nav_webapp: "Web App", nav_login: "Accedi",
                 hero_title: "La tua libreria personale.<br><span class='text-blue-200'>Organizza il web.</span>",
                 hero_desc: "Salva i tuoi link preferiti. L'ordine che hai sempre desiderato, ora su tutti i tuoi dispositivi.",
                 feat_title: "Tutto ciò di cui hai bisogno",
@@ -332,23 +333,22 @@
         });
 
         async function syncData(uid) {
-    const statusBar = document.getElementById('user-status-bar');
-    const t = getI18n();
+            const statusBar = document.getElementById('user-status-bar');
+            const t = getI18n();
 
-    try {
-        // 1. Obtener metadatos de Firestore (Premium status) 
-        const userSnap = await getDoc(doc(db, "users", uid));
-        const isPremium = userSnap.exists() ? userSnap.data().isPremium : false;
+            try {
+                // 1. Obtener metadatos de Firestore (Premium status) 
+                const userSnap = await getDoc(doc(db, "users", uid));
+                const isPremium = userSnap.exists() ? userSnap.data().isPremium : false;
 
-        // 2. RUTA CORRECTA AL JSON (basada en tu link)
-        const backupRef = ref(storage, `backups/${uid}/links_backup.json`);
-        const urlJSON = await getDownloadURL(backupRef);
-        
-        const response = await fetch(urlJSON);
-        allLinks = await response.json();
+                // 2. Intentar descargar el JSON de Storage 
+                const backupRef = ref(storage, `backups/${uid}/links_backup.json`);
+                const urlJSON = await getDownloadURL(backupRef);
+                const response = await fetch(urlJSON);
+                allLinks = await response.json();
 
-        // 3. Actualizar UI
-        const count = allLinks.length;
+                // 3. Actualizar barra de estatus
+                const count = allLinks.length;
                 if (isPremium) {
                     statusBar.innerHTML = `<span class="text-amber-500"><i class="fas fa-crown mr-1"></i> ${t.status_premium}</span> • ${count} ${t.links_saved}`;
                 } else {
