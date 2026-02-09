@@ -336,13 +336,40 @@ function pickLang() {
     renderGuide(currentLang);
     setVideo(currentLang);
 
-    // Ejecución del scroll
-    window.addEventListener('load', () => {
-      // Un pequeño retraso permite que Tailwind y el contenido dinámico se asienten
-      setTimeout(handleScroll, 500);
-    });
+    // Lógica de Scroll de Precisión
+const handleScroll = () => {
+  if (window.location.hash === '#video') {
+    const element = document.getElementById('video');
+    if (element) {
+      // Calculamos la posición real. Restamos 100px para compensar el Nav
+      const yOffset = -100; 
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-    window.addEventListener('hashchange', handleScroll);
-  </script>
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
+    }
+  }
+};
+
+// Inicialización de la App
+const currentLang = pickLang();
+renderGuide(currentLang);
+setVideo(currentLang);
+
+// SOLUCIÓN AL PROBLEMA: Intentar el scroll en ráfaga
+// Esto compensa el tiempo de carga de las fuentes y el renderizado de Tailwind
+window.addEventListener('load', () => {
+  // Primer intento rápido
+  setTimeout(handleScroll, 100);
+  // Segundo intento cuando el video y estilos suelen estar listos
+  setTimeout(handleScroll, 500);
+  // Tercer intento de seguridad
+  setTimeout(handleScroll, 1000);
+});
+
+// Por si el usuario cambia el hash manualmente sin recargar
+window.addEventListener('hashchange', handleScroll);  </script>
 </body>
 </html>
