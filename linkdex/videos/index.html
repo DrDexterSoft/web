@@ -320,12 +320,21 @@ function setVideo(lang) {
     const lang = pickLang();
     renderGuide(lang);
     setVideo(lang);
-    window.addEventListener('load', () => {
+    
+window.addEventListener('load', () => {
   if (window.location.hash === '#video') {
-    const element = document.getElementById('video');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Usamos un pequeño retraso para asegurar que Tailwind y los textos 
+    // hayan ocupado su espacio real en la pantalla.
+    setTimeout(() => {
+      const element = document.getElementById('video');
+      if (element) {
+        // Obtenemos la posición exacta del elemento respecto al documento
+        const yOffset = -120; // Ajuste manual para compensar el menú pegajoso
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 300); // 300ms es el tiempo ideal para que todo se asiente
   }
 });
 
