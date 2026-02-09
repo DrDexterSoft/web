@@ -42,13 +42,10 @@
   <main class="max-w-5xl mx-auto p-4 md:p-6">
     <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-4 md:p-8">
 
-      <div>
+      <div id="video" class="scroll-mt-32">
         <h1 id="pageTitle" class="text-2xl md:text-3xl font-extrabold text-linkdex">LinkDex</h1>
         <p id="pageSubtitle" class="text-gray-600 mt-1"></p>
       </div>
-
-    <div id="video" class="scroll-mt-24"></div>
-
 
       <div class="mt-5">
         <div id="guide" class="max-w-none"></div>
@@ -323,6 +320,15 @@ function setVideo(lang) {
     const lang = pickLang();
     renderGuide(lang);
     setVideo(lang);
+    window.addEventListener('load', () => {
+  if (window.location.hash === '#video') {
+    const element = document.getElementById('video');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+});
+
   </script>
 </body>
 </html>
