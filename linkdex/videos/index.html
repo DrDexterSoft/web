@@ -10,7 +10,6 @@
     :root { --linkdex-blue: #0060A8; }
     .bg-linkdex { background-color: var(--linkdex-blue); }
     .text-linkdex { color: var(--linkdex-blue); }
-    /* Estilo para el simulador de teléfono */
     .video-phone-frame {
       position: relative;
       width: 100%;
@@ -25,7 +24,6 @@
     video { object-fit: cover; width: 100%; height: 100%; }
     summary::-webkit-details-marker { display: none; }
     summary { list-style: none; }
-    /* Suaviza el scroll para todo el documento */
     html { scroll-behavior: smooth; }
   </style>
 </head>
@@ -44,14 +42,13 @@
   <main class="max-w-5xl mx-auto p-4 md:p-6">
     <div class="bg-white rounded-3xl shadow-sm border border-gray-100 p-4 md:p-8">
 
-      <div id="video" class="scroll-mt-24 md:scroll-mt-32">
+      <div id="video" class="scroll-mt-32">
         <h1 id="pageTitle" class="text-2xl md:text-3xl font-extrabold text-linkdex">LinkDex</h1>
         <p id="pageSubtitle" class="text-gray-600 mt-1"></p>
       </div>
 
       <div class="mt-5">
         <div id="guide" class="max-w-none"></div>
-
         <details id="guideDetails" class="mt-3 group">
           <summary id="toggleSummary" class="cursor-pointer text-sm font-bold text-linkdex hover:underline flex items-center gap-1">
             <span class="group-open:rotate-90 transition-transform inline-block">▶</span>
@@ -75,7 +72,6 @@
            class="px-6 py-3 rounded-xl bg-gray-900 text-white text-sm font-bold hover:opacity-90 text-center">
           Abrir en Play Store
         </a>
-
         <a href="/linkdex/" class="px-6 py-3 rounded-xl bg-white border border-gray-200 text-gray-700 text-sm font-bold hover:bg-gray-50 text-center transition">
           Volver a LinkDex
         </a>
@@ -277,99 +273,54 @@ function pickLang() {
       document.documentElement.lang = lang;
       document.getElementById("pageTitle").textContent = t.headerTitle;
       document.getElementById("pageSubtitle").textContent = t.pageSubtitle;
-
       document.getElementById("guide").innerHTML = sectionsHtml((t.sections || []).slice(0, 2));
       document.getElementById("guideFull").innerHTML = sectionsHtml((t.sections || []).slice(2));
-
       const details = document.getElementById("guideDetails");
       const label = document.getElementById("labelTxt");
-
-      const updateToggleLabel = () => {
-        label.textContent = details.open ? t.toggleHide : t.toggleShow;
-      };
-      updateToggleLabel();
+      const updateToggleLabel = () => { label.textContent = details.open ? t.toggleHide : t.toggleShow; };
       details.addEventListener("toggle", updateToggleLabel);
+      updateToggleLabel();
     }
 
     function setVideo(lang) {
       const vid = document.getElementById("vid");
       const err = document.getElementById("err");
-      let triedFallback = false;
       let current = lang;
-
       const load = (l) => {
-        current = l;
-        err.classList.add("hidden");
-        err.textContent = "";
         vid.src = videoUrl(l);
         vid.load();
       };
-
       vid.onerror = () => {
-        if (!triedFallback && current !== "en") {
-          triedFallback = true;
-          load("en");
-          return;
-        }
-        err.classList.remove("hidden");
-        err.textContent = `No se pudo cargar el video (${current}).`;
+        if (current !== "en") { load("en"); current = "en"; }
+        else { err.classList.remove("hidden"); err.textContent = "Error loading video."; }
       };
-
       load(lang);
     }
 
-    // Lógica de Scroll mejorada
+    // Lógica de Scroll Unificada
     const handleScroll = () => {
       if (window.location.hash === '#video') {
         const element = document.getElementById('video');
         if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          const yOffset = -100; // Espacio para el menú superior
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }
     };
 
-    // Inicialización
-    const currentLang = pickLang();
-    renderGuide(currentLang);
-    setVideo(currentLang);
+    // Inicialización Única
+    const lang = pickLang();
+    renderGuide(lang);
+    setVideo(lang);
 
-    // Lógica de Scroll de Precisión
-const handleScroll = () => {
-  if (window.location.hash === '#video') {
-    const element = document.getElementById('video');
-    if (element) {
-      // Calculamos la posición real. Restamos 100px para compensar el Nav
-      const yOffset = -100; 
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-
-      window.scrollTo({
-        top: y,
-        behavior: 'smooth'
-      });
-    }
-  }
-};
-
-// Inicialización de la App
-const currentLang = pickLang();
-renderGuide(currentLang);
-setVideo(currentLang);
-
-// SOLUCIÓN AL PROBLEMA: Intentar el scroll en ráfaga
-// Esto compensa el tiempo de carga de las fuentes y el renderizado de Tailwind
-window.addEventListener('load', () => {
-  // Primer intento rápido
-  setTimeout(handleScroll, 100);
-  // Segundo intento cuando el video y estilos suelen estar listos
-  setTimeout(handleScroll, 500);
-  // Tercer intento de seguridad
-  setTimeout(handleScroll, 1000);
-});
-
-// Por si el usuario cambia el hash manualmente sin recargar
-window.addEventListener('hashchange', handleScroll);  </script>
+    // Eventos de Scroll
+    window.addEventListener('load', () => {
+      setTimeout(handleScroll, 100);
+      setTimeout(handleScroll, 500);
+      setTimeout(handleScroll, 1200); // Tercer intento para asegurar
+    });
+    window.addEventListener('hashchange', handleScroll);
+  </script>
 </body>
 </html>
