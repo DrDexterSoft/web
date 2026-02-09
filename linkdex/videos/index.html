@@ -47,6 +47,9 @@
         <p id="pageSubtitle" class="text-gray-600 mt-1"></p>
       </div>
 
+    <div id="video" class="scroll-mt-24"></div>
+
+
       <div class="mt-5">
         <div id="guide" class="max-w-none"></div>
 
@@ -97,63 +100,150 @@
           { title: "Uso General", body: "1. Desde cualquier aplicación o sitio web (una red social como Instagram, Facebook, etc), un portal de videos (YouTube, Vimeo, etc), un sitio de noticias, o simplemente una página con un texto que te interese, toca 'compartir' y elige LinkDex, o copia el link y agrégalo dentro de la aplicación.\n\n2. Elige un grupo, edita el título, opcionalmente (recomendado) agrega tags (separados por comas) para facilitar la búsqueda, ¡y listo!" },
           { title: "Registros y Cuentas", body: "Si usas una **Cuenta Anónima**, tus links viven solo en este teléfono. ¡Cuidado! Si cambias de dispositivo o borras la app, perderás tu colección.\n\nAl registrarte con Google, Apple o Correo, activas la **Sincronización en la Nube**. Tus links estarán seguros, respaldados y disponibles en cualquier dispositivo donde inicies sesión." },
           { title: "Manejo de Links", body: "Para mayor agilidad, mantén presionado cualquier link para activar la **Selección Múltiple**. Esto te permite mover o borrar grandes bloques de enlaces a la vez.\n\nAdemás, con la lupa de **Búsqueda Global**, puedes localizar contenido no solo por su título, sino también explorando las etiquetas que hayas asignado a tu colección." },
-          { title: "Imágenes y Miniaturas", body: "LinkDex utiliza Miniaturas Inteligentes para capturar la mejor imagen de cada sitio. Sin embargo, algunos sitios con alta seguridad o perfiles privados no permiten que apps externas lea su contenido.\n\nSi un link no muestra imagen, puedes usar la option 'Reparar miniatura' en el menú del enlace para intentar un escaneo profundo y recuperar la previsualización, si es posible." }
+          { title: "Imágenes y Miniaturas", body: "LinkDex utiliza Miniaturas Inteligentes para capturar la mejor imagen de cada sitio. Sin embargo, algunos sitios con alta seguridad o perfiles privados no permiten que apps externas lea su contenido.\n\nSi un link no muestra imagen, puedes usar la opción 'Reparar miniatura' en el menú del enlace para intentar un escaneo profundo y recuperar la previsualización, si es posible." }
         ]
       },
       en: {
-        pageSubtitle: "Watch this short video (under 1 minute). It is automatically selected based on your browser language.",
-        headerTitle: "Your Guide to LinkDex",
-        toggleShow: "Open full user guide",
-        toggleHide: "Hide full guide",
-        sections: [
-          { title: "What is LinkDex?", body: "Imagine having your own **personal internet library**. LinkDex isn't just a bookmark manager; it's the place where you store articles, videos, recipes, products, or social media profiles that inspire you.\n\nEverything is organized your way through **Groups and Tags**, allowing you to find that special link in seconds, no matter how much time has passed." },
-          { title: "General Use", body: "1. From any application or website, tap 'share' and choose LinkDex, or copy the link and add it inside the application.\n\n2. Choose a group, edit the title, optionally add tags (separated by commas) to make searching easier, and you're done!" },
-          { title: "Accounts and Registration", body: "If you use an **Anonymous Account**, your links live only on this phone. By registering with Google, Apple, or Email, you activate **Cloud Sync**." },
-          { title: "Managing Links", body: "For more speed, long-press any link to activate **Multi-Selection**.\n\nAdditionally, with the **Global Search** magnifying glass, you can locate content not just by its title, but also by exploring tags." },
-          { title: "Images and Thumbnails", body: "LinkDex uses Smart Thumbnails. If a link does not show an image, use 'Repair thumbnail' for a deep scan." }
-        ]
-      },
-      fr: {
-        pageSubtitle: "Regardez cette courte vidéo (moins d'une minute).",
-        headerTitle: "Votre Guide LinkDex",
-        toggleShow: "Afficher le guide complet",
-        toggleHide: "Masquer le guide complet",
-        sections: [
-          { title: "Qu'est-ce que LinkDex ?", body: "Imaginez avoir votre propre **bibliothèque personnelle d'internet**." },
-          { title: "Utilisation", body: "Appuyez sur 'partager' et choisissez LinkDex, ou copiez le lien." }
-        ]
-      },
-      it: {
-        pageSubtitle: "Guarda questo breve video (meno di 1 minuto).",
-        headerTitle: "La tua Guida LinkDex",
-        toggleShow: "Mostra guida completa",
-        toggleHide: "Nascondi guida completa",
-        sections: [
-          { title: "Cos'è LinkDex?", body: "Immagina di avere la tua **biblioteca personale di internet**." },
-          { title: "Utilizzo", body: "Tocca 'condividi' e scegli LinkDex, o copia il link." }
-        ]
-      },
-      pt: {
-        pageSubtitle: "Assista a este vídeo curto (menos de 1 minuto).",
-        headerTitle: "Seu Guia no LinkDex",
-        toggleShow: "Abrir guia de uso completo",
-        toggleHide: "Ocultar guia completo",
-        sections: [
-          { title: "O que é o LinkDex?", body: "Imagine ter sua própria **biblioteca pessoal da internet**." },
-          { title: "Uso Geral", body: "Toque em 'compartilhar' e escolha o LinkDex, ou copie o link." }
-        ]
-      },
-      de: {
-        pageSubtitle: "Sieh dir dieses kurze Video an (unter 1 Minute).",
-        headerTitle: "Dein LinkDex Leitfaden",
-        toggleShow: "Bedienungsanleitung öffnen",
-        toggleHide: "Leitfaden ausblenden",
-        sections: [
-          { title: "Was ist LinkDex?", body: "Stell dir vor, du hättest deine eigene **persönliche Internet-Bibliothek**." },
-          { title: "Nutzung", body: "Tippen Sie auf 'Teilen' und wählen Sie LinkDex." }
-        ]
-      }
-    };
+  pageSubtitle: "Watch this short video (under 1 minute). It is automatically selected based on your browser language.",
+  headerTitle: "Your LinkDex Guide",
+  toggleShow: "Open full user guide",
+  toggleHide: "Hide full guide",
+  sections: [
+    {
+      title: "What is LinkDex?",
+      body: "Imagine having your own **personal internet library**. LinkDex isn’t just a bookmark manager; it’s the place where you save articles, videos, recipes, products, or social media profiles that inspire you.\n\nEverything is organized your way using **Groups and Tags**, allowing you to find that special link in seconds, no matter how much time has passed."
+    },
+    {
+      title: "General Use",
+      body: "1. From any app or website (social networks like Instagram or Facebook, video platforms like YouTube or Vimeo, news sites, or any page you find interesting), tap 'share' and choose LinkDex, or copy the link and add it inside the app.\n\n2. Choose a group, edit the title, optionally (recommended) add tags (comma-separated) to make searching easier, and you’re done!"
+    },
+    {
+      title: "Accounts and Registration",
+      body: "If you use an **Anonymous Account**, your links live only on this phone. Be careful! If you change devices or delete the app, your collection will be lost.\n\nBy signing in with Google, Apple, or Email, you enable **Cloud Sync**. Your links will be safe, backed up, and available on any device where you log in."
+    },
+    {
+      title: "Managing Links",
+      body: "For faster organization, long-press any link to activate **Multi-Selection**. This lets you move or delete large groups of links at once.\n\nWith the **Global Search** magnifying glass, you can find content not only by title, but also by exploring the tags you’ve assigned."
+    },
+    {
+      title: "Images and Thumbnails",
+      body: "LinkDex uses Smart Thumbnails to capture the best image from each site. However, some high-security websites or private profiles do not allow external apps to read their content.\n\nIf a link shows no image, you can use the 'Repair thumbnail' option in the link menu to attempt a deeper scan and recover the preview, when possible."
+    }
+  ]
+},
+ fr: {
+  pageSubtitle: "Regardez cette courte vidéo (moins d’une minute). Elle est sélectionnée automatiquement selon la langue de votre navigateur.",
+  headerTitle: "Votre guide LinkDex",
+  toggleShow: "Ouvrir le guide d’utilisation complet",
+  toggleHide: "Masquer le guide complet",
+  sections: [
+    {
+      title: "Qu’est-ce que LinkDex ?",
+      body: "Imaginez avoir votre propre **bibliothèque personnelle d’internet**. LinkDex n’est pas qu’un simple gestionnaire de favoris ; c’est l’endroit où vous conservez des articles, vidéos, recettes, produits ou profils de réseaux sociaux qui vous inspirent.\n\nTout est organisé selon vos préférences grâce aux **Groupes et Tags**, vous permettant de retrouver un lien en quelques secondes, même longtemps après."
+    },
+    {
+      title: "Utilisation générale",
+      body: "1. Depuis n’importe quelle application ou site web (réseaux sociaux comme Instagram ou Facebook, plateformes vidéo comme YouTube ou Vimeo, sites d’actualité, etc.), appuyez sur « partager » et choisissez LinkDex, ou copiez le lien et ajoutez-le dans l’application.\n\n2. Choisissez un groupe, modifiez le titre, ajoutez éventuellement (recommandé) des tags (séparés par des virgules), et c’est terminé !"
+    },
+    {
+      title: "Comptes et inscription",
+      body: "Si vous utilisez un **compte anonyme**, vos liens restent uniquement sur ce téléphone. Attention : si vous changez d’appareil ou supprimez l’application, votre collection sera perdue.\n\nEn vous connectant avec Google, Apple ou Email, vous activez la **synchronisation cloud**. Vos liens seront sauvegardés et disponibles sur tous vos appareils."
+    },
+    {
+      title: "Gestion des liens",
+      body: "Pour plus de rapidité, appuyez longuement sur un lien afin d’activer la **sélection multiple**. Cela permet de déplacer ou supprimer plusieurs liens en une seule fois.\n\nGrâce à la **recherche globale**, vous pouvez retrouver du contenu par son titre ou par les tags associés."
+    },
+    {
+      title: "Images et miniatures",
+      body: "LinkDex utilise des miniatures intelligentes pour capturer la meilleure image de chaque site. Toutefois, certains sites sécurisés ou profils privés empêchent l’accès aux contenus.\n\nSi un lien n’affiche pas d’image, utilisez l’option « Réparer la miniature » pour tenter une analyse plus approfondie."
+    }
+  ]
+},
+it: {
+  pageSubtitle: "Guarda questo breve video (meno di 1 minuto). Viene selezionato automaticamente in base alla lingua del browser.",
+  headerTitle: "La tua guida LinkDex",
+  toggleShow: "Apri la guida completa",
+  toggleHide: "Nascondi la guida completa",
+  sections: [
+    {
+      title: "Cos’è LinkDex?",
+      body: "Immagina di avere la tua **biblioteca personale di internet**. LinkDex non è solo un gestore di segnalibri; è il luogo in cui salvi articoli, video, ricette, prodotti o profili social che ti ispirano.\n\nTutto è organizzato secondo le tue preferenze grazie a **Gruppi e Tag**, permettendoti di ritrovare rapidamente qualsiasi link."
+    },
+    {
+      title: "Utilizzo generale",
+      body: "1. Da qualsiasi app o sito web (social network come Instagram o Facebook, piattaforme video come YouTube o Vimeo, siti di notizie, ecc.), tocca « condividi » e scegli LinkDex, oppure copia il link e aggiungilo nell’app.\n\n2. Scegli un gruppo, modifica il titolo, aggiungi facoltativamente (consigliato) dei tag separati da virgole, e il gioco è fatto."
+    },
+    {
+      title: "Account e registrazione",
+      body: "Se utilizzi un **account anonimo**, i tuoi link rimangono solo su questo telefono. Attenzione: cambiando dispositivo o eliminando l’app, perderai la tua raccolta.\n\nAccedendo con Google, Apple o Email attivi la **sincronizzazione cloud**, che mantiene i tuoi link al sicuro e disponibili ovunque."
+    },
+    {
+      title: "Gestione dei link",
+      body: "Per lavorare più velocemente, tieni premuto un link per attivare la **selezione multipla**, così puoi spostare o eliminare più link insieme.\n\nCon la **ricerca globale**, puoi trovare contenuti tramite titolo o tag."
+    },
+    {
+      title: "Immagini e miniature",
+      body: "LinkDex utilizza miniature intelligenti per ottenere l’immagine migliore da ogni sito. Tuttavia, alcuni siti protetti o profili privati non consentono l’accesso.\n\nSe un link non mostra un’immagine, usa l’opzione « Ripara miniatura » per tentare una scansione più profonda."
+    }
+  ]
+},
+pt: {
+  pageSubtitle: "Assista a este vídeo curto (menos de 1 minuto). Ele é selecionado automaticamente conforme o idioma do navegador.",
+  headerTitle: "Seu guia LinkDex",
+  toggleShow: "Abrir guia de uso completo",
+  toggleHide: "Ocultar guia completo",
+  sections: [
+    {
+      title: "O que é o LinkDex?",
+      body: "Imagine ter sua própria **biblioteca pessoal da internet**. O LinkDex não é apenas um marcador; é o lugar onde você salva artigos, vídeos, receitas, produtos ou perfis de redes sociais que te inspiram.\n\nTudo é organizado do seu jeito usando **Grupos e Tags**, facilitando encontrar qualquer link rapidamente."
+    },
+    {
+      title: "Uso geral",
+      body: "1. De qualquer aplicativo ou site (redes sociais como Instagram ou Facebook, plataformas de vídeo como YouTube ou Vimeo, sites de notícias, etc.), toque em « compartilhar » e escolha o LinkDex, ou copie o link e adicione no app.\n\n2. Escolha um grupo, edite o título, adicione opcionalmente (recomendado) tags separadas por vírgulas, e pronto."
+    },
+    {
+      title: "Contas e registro",
+      body: "Se você usar uma **conta anônima**, seus links existirão apenas neste telefone. Atenção: ao trocar de aparelho ou apagar o app, sua coleção será perdida.\n\nAo entrar com Google, Apple ou Email, você ativa a **sincronização na nuvem**, mantendo seus links seguros e acessíveis."
+    },
+    {
+      title: "Gerenciamento de links",
+      body: "Para maior agilidade, pressione e segure um link para ativar a **seleção múltipla**, permitindo mover ou excluir vários links de uma vez.\n\nCom a **busca global**, você encontra conteúdos pelo título ou pelas tags."
+    },
+    {
+      title: "Imagens e miniaturas",
+      body: "O LinkDex utiliza miniaturas inteligentes para capturar a melhor imagem de cada site. Porém, alguns sites protegidos ou perfis privados bloqueiam esse acesso.\n\nSe um link não exibir imagem, utilize a opção « Reparar miniatura » para tentar recuperar a visualização."
+    }
+  ]
+},
+ de: {
+  pageSubtitle: "Sieh dir dieses kurze Video an (unter 1 Minute). Es wird automatisch anhand der Sprache deines Browsers ausgewählt.",
+  headerTitle: "Dein LinkDex-Leitfaden",
+  toggleShow: "Vollständige Anleitung öffnen",
+  toggleHide: "Anleitung ausblenden",
+  sections: [
+    {
+      title: "Was ist LinkDex?",
+      body: "Stell dir vor, du hättest deine eigene **persönliche Internet-Bibliothek**. LinkDex ist nicht nur eine Lesezeichen-App, sondern der Ort, an dem du Artikel, Videos, Rezepte, Produkte oder Social-Media-Profile speicherst, die dich inspirieren.\n\nAlles wird mithilfe von **Gruppen und Tags** nach deinen Wünschen organisiert, sodass du jeden Link schnell wiederfindest."
+    },
+    {
+      title: "Allgemeine Nutzung",
+      body: "1. Von jeder App oder Website (soziale Netzwerke wie Instagram oder Facebook, Video-Plattformen wie YouTube oder Vimeo, Nachrichtenseiten usw.) tippe auf « Teilen » und wähle LinkDex, oder kopiere den Link und füge ihn in der App hinzu.\n\n2. Wähle eine Gruppe, bearbeite den Titel, füge optional (empfohlen) Tags hinzu, und fertig."
+    },
+    {
+      title: "Konten und Registrierung",
+      body: "Bei einem **anonymen Konto** werden deine Links nur auf diesem Gerät gespeichert. Achtung: Beim Gerätewechsel oder Löschen der App gehen sie verloren.\n\nDurch die Anmeldung mit Google, Apple oder Email aktivierst du die **Cloud-Synchronisierung**, sodass deine Links sicher gespeichert und überall verfügbar sind."
+    },
+    {
+      title: "Link-Verwaltung",
+      body: "Halte einen Link gedrückt, um die **Mehrfachauswahl** zu aktivieren und mehrere Links gleichzeitig zu verschieben oder zu löschen.\n\nMit der **globalen Suche** findest du Inhalte nach Titel oder Tags."
+    },
+    {
+      title: "Bilder und Vorschaubilder",
+      body: "LinkDex verwendet intelligente Vorschaubilder, um das beste Bild einer Seite anzuzeigen. Manche geschützten Websites oder privaten Profile verhindern dies jedoch.\n\nFalls ein Link kein Bild zeigt, nutze die Option « Vorschaubild reparieren », um einen erneuten Versuch zu starten."
+    }
+  ]
+},
+};
 
     function pickLang() {
       const prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
@@ -164,9 +254,10 @@
       return "en";
     }
 
-    function videoUrl(lang) {
-      return `${BASE}LinkDex-${lang}.mp4`;
-    }
+  function videoUrl(lang) {
+  if (!supported.includes(lang)) lang = "en";
+  return `${BASE}LinkDex-${lang}.mp4`;
+}
 
     function mdToHtml(s) {
       const safe = String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
@@ -201,17 +292,33 @@
       details.addEventListener("toggle", updateToggleLabel);
     }
 
-    function setVideo(lang) {
-      const vid = document.getElementById("vid");
-      const err = document.getElementById("err");
-      const src = videoUrl(lang);
-      vid.src = src;
-      vid.load();
-      vid.onerror = () => {
-        err.classList.remove("hidden");
-        err.textContent = `No se pudo cargar el video (${lang}).`;
-      };
+function setVideo(lang) {
+  const vid = document.getElementById("vid");
+  const err = document.getElementById("err");
+
+  let triedFallback = false;
+  let current = lang;
+
+  const load = (l) => {
+    current = l;
+    err.classList.add("hidden");
+    err.textContent = "";
+    vid.src = videoUrl(l);
+    vid.load();
+  };
+
+  vid.onerror = () => {
+    if (!triedFallback && current !== "en") {
+      triedFallback = true;
+      load("en");
+      return;
     }
+    err.classList.remove("hidden");
+    err.textContent = `No se pudo cargar el video (${current}).`;
+  };
+
+  load(lang);
+}
 
     const lang = pickLang();
     renderGuide(lang);
