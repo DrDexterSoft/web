@@ -84,9 +84,9 @@
   </main>
 
   <script>
-    const supported = ["en","es","pt","fr","it","de"];
+    const supported = ["en", "es", "pt", "fr", "it", "de"];
     const BASE = "https://pub-47e7d8f47e9449bd8c8bda4d376e39a6.r2.dev/linkdex-videos/";
-
+  
     const HELP_TEXTS = {
       es: {
         headerTitle: "Tu Guía en LinkDex",
@@ -238,82 +238,83 @@ pt: {
 };
 
 function pickLang() {
-      const prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
-      for (const l of prefs) {
-        const code = String(l).toLowerCase().split("-")[0];
-        if (supported.includes(code)) return code;
-      }
-      return "en";
+    const prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
+    for (const l of prefs) {
+      const code = String(l).toLowerCase().split("-")[0];
+      if (supported.includes(code)) return code;
     }
+    return "en";
+  }
 
+  // CORREGIDO: Uso de backticks
   function videoUrl(lang) {
-  if (!supported.includes(lang)) lang = "en";
-  return ${BASE}LinkDex-${lang}.mp4;
-}
+    if (!supported.includes(lang)) lang = "en";
+    return `${BASE}LinkDex-${lang}.mp4`;
+  }
 
-    function mdToHtml(s) {
-      const safe = String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-      return "<p>" + safe.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
-    }
+  function mdToHtml(s) {
+    const safe = String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    return "<p>" + safe.replace(/\n\n+/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+  }
 
-    function sectionsHtml(sections) {
-      return (sections || []).map(sec => 
-        <div class="mb-4">
-          <h2 class="text-lg font-bold text-gray-900">${sec.title}</h2>
-          <div class="text-gray-700">${mdToHtml(sec.body)}</div>
-        </div>
-      ).join("");
-    }
+  // CORREGIDO: Uso de backticks para el HTML generado
+  function sectionsHtml(sections) {
+    return (sections || []).map(sec => `
+      <div class="mb-4">
+        <h2 class="text-lg font-bold text-gray-900">${sec.title}</h2>
+        <div class="text-gray-700">${mdToHtml(sec.body)}</div>
+      </div>
+    `).join("");
+  }
 
-    function renderGuide(lang) {
-      const t = HELP_TEXTS[lang] || HELP_TEXTS.en;
-      document.documentElement.lang = lang;
-      document.getElementById("pageTitle").textContent = t.headerTitle;
+  function renderGuide(lang) {
+    const t = HELP_TEXTS[lang] || HELP_TEXTS.en;
+    document.documentElement.lang = lang;
+    document.getElementById("pageTitle").textContent = t.headerTitle;
 
-      document.getElementById("guide").innerHTML = sectionsHtml((t.sections || []).slice(0, 2));
-      document.getElementById("guideFull").innerHTML = sectionsHtml((t.sections || []).slice(2));
+    document.getElementById("guide").innerHTML = sectionsHtml((t.sections || []).slice(0, 2));
+    document.getElementById("guideFull").innerHTML = sectionsHtml((t.sections || []).slice(2));
 
-      const details = document.getElementById("guideDetails");
-      const label = document.getElementById("labelTxt");
+    const details = document.getElementById("guideDetails");
+    const label = document.getElementById("labelTxt");
 
-      const updateToggleLabel = () => {
-        label.textContent = details.open ? t.toggleHide : t.toggleShow;
-      };
-      updateToggleLabel();
-      details.addEventListener("toggle", updateToggleLabel);
-    }
+    const updateToggleLabel = () => {
+      label.textContent = details.open ? t.toggleHide : t.toggleShow;
+    };
+    updateToggleLabel();
+    details.addEventListener("toggle", updateToggleLabel);
+  }
 
-function setVideo(lang) {
-  const vid = document.getElementById("vid");
-  const err = document.getElementById("err");
+  function setVideo(lang) {
+    const vid = document.getElementById("vid");
+    const err = document.getElementById("err");
 
-  let triedFallback = false;
-  let current = lang;
+    let triedFallback = false;
+    let current = lang;
 
-  const load = (l) => {
-    current = l;
-    err.classList.add("hidden");
-    err.textContent = "";
-    vid.src = videoUrl(l);
-    vid.load();
-  };
+    const load = (l) => {
+      current = l;
+      err.classList.add("hidden");
+      err.textContent = "";
+      vid.src = videoUrl(l);
+      vid.load();
+    };
 
-  vid.onerror = () => {
-    if (!triedFallback && current !== "en") {
-      triedFallback = true;
-      load("en");
-      return;
-    }
-    err.classList.remove("hidden");
-    err.textContent = No se pudo cargar el video (${current}).;
-  };
+    vid.onerror = () => {
+      if (!triedFallback && current !== "en") {
+        triedFallback = true;
+        load("en");
+        return;
+      }
+      err.classList.remove("hidden");
+      // CORREGIDO: Uso de backticks
+      err.textContent = `No se pudo cargar el video (${current}).`;
+    };
 
-  load(lang);
-}
+    load(lang);
+  }
 
-    const lang = pickLang();
-    renderGuide(lang);
-    setVideo(lang);
-  </script>
-</body>
-</html>
+  const lang = pickLang();
+  renderGuide(lang);
+  setVideo(lang);
+</script>
