@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Victor Oviedo - Dextograma</title>
+    <link rel="icon" type="image/png" href="assets/icono.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+
+<div class="max-w-2xl mx-auto px-6 py-16">
+    <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden p-10 border border-gray-100">
+
+        <!-- Header -->
+        <div class="flex flex-col items-center mb-10">
+            <div class="w-32 h-32 rounded-full overflow-hidden shadow-md mb-4 border-2 border-gray-100">
+                <img src="assets/foto.jpeg" alt="Dr. Victor Oviedo" class="w-full h-full object-cover">
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900">Dr. Victor Oviedo</h1>
+            <p class="text-blue-600 font-medium italic" data-i18n="role">
+                Médico y Desarrollador
+            </p>
+        </div>
+
+        <!-- Content -->
+        <div class="space-y-6 text-lg text-gray-700">
+            <p data-i18n="app_desc"></p>
+            <p data-i18n="app_details"></p>
+
+            <hr class="my-8 border-gray-100">
+
+            <h2 class="text-xl font-bold text-gray-900" data-i18n="author_title"></h2>
+            <p data-i18n="author_bio"></p>
+        </div>
+
+        <!-- Contact -->
+        <div class="mt-10 p-6 bg-blue-50 rounded-3xl">
+            <h3 class="font-bold text-blue-900 mb-4" data-i18n="contact_label"></h3>
+
+            <div class="space-y-3">
+                <a href="mailto:drvictoroviedo@gmail.com"
+                   class="text-blue-700 font-medium flex items-center gap-2 hover:underline">
+                    <i class="fas fa-envelope"></i> drvictoroviedo@gmail.com
+                </a>
+
+                <a href="https://instagram.com/drvictoroviedo"
+                   target="_blank"
+                   class="text-blue-700 font-medium flex items-center gap-2 hover:underline">
+                    <i class="fab fa-instagram"></i> @drvictoroviedo
+                </a>
+            </div>
+        </div>
+
+        <!-- Back -->
+        <div class="mt-10 flex justify-center">
+            <a href="index.html"
+               class="text-gray-400 hover:text-gray-900 font-bold text-sm transition-colors"
+               data-i18n="back_home">
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const translations = {
+    es: {
+        role: "Médico y Desarrollador",
+        app_desc: "Dextograma es una calculadora de edad gestacional diseñada para uso profesional y personal.",
+        app_details: "Permite calcular por FUM o por primera ecografía, obtener fechas clave entre 37 y 42 semanas y realizar cálculos para fechas futuras de forma rápida y precisa.",
+        author_title: "Sobre el autor",
+        author_bio: "Médico ginecólogo de profesión, apasionado por la tecnología y el desarrollo de aplicaciones útiles para la práctica médica diaria.",
+        contact_label: "Contacto",
+        back_home: "← Volver al inicio"
+    },
+    en: {
+        role: "Doctor & Developer",
+        app_desc: "Dextograma is a gestational age calculator designed for professional and personal use.",
+        app_details: "It allows calculation by LMP or first ultrasound, provides key dates between weeks 37 and 42, and performs future date calculations quickly and accurately.",
+        author_title: "About the author",
+        author_bio: "OB/GYN physician by profession, passionate about technology and developing useful tools for daily medical practice.",
+        contact_label: "Contact",
+        back_home: "← Back to Home"
+    },
+    pt: {
+        role: "Médico e Desenvolvedor",
+        app_desc: "Dextograma é uma calculadora de idade gestacional desenvolvida para uso profissional e pessoal.",
+        app_details: "Permite calcular pela DUM ou pela primeira ultrassonografia, obter datas-chave entre 37 e 42 semanas e realizar cálculos para datas futuras de forma rápida e precisa.",
+        author_title: "Sobre o autor",
+        author_bio: "Médico ginecologista por profissão, apaixonado por tecnologia e pelo desenvolvimento de ferramentas úteis para a prática médica diária.",
+        contact_label: "Contato",
+        back_home: "← Voltar ao início"
+    },
+    it: {
+        role: "Medico e Sviluppatore",
+        app_desc: "Dextograma è un calcolatore di età gestazionale progettato per uso professionale e personale.",
+        app_details: "Consente il calcolo tramite LMP o prima ecografia, fornisce le date chiave tra le settimane 37 e 42 ed esegue calcoli per date future in modo rapido e preciso.",
+        author_title: "Sull'autore",
+        author_bio: "Medico ginecologo di professione, appassionato di tecnologia e dello sviluppo di strumenti utili per la pratica medica quotidiana.",
+        contact_label: "Contatti",
+        back_home: "← Torna alla home"
+    },
+    fr: {
+        role: "Médecin et Développeur",
+        app_desc: "Dextograma est un calculateur d’âge gestationnel conçu pour un usage professionnel et personnel.",
+        app_details: "Il permet le calcul par DDR ou première échographie, fournit les dates clés entre 37 et 42 semaines et effectue des calculs pour des dates futures de manière rapide et précise.",
+        author_title: "À propos de l'auteur",
+        author_bio: "Gynécologue-obstétricien de profession, passionné par la technologie et le développement d’outils utiles pour la pratique médicale quotidienne.",
+        contact_label: "Contact",
+        back_home: "← Retour à l'accueil"
+    },
+    de: {
+        role: "Arzt und Entwickler",
+        app_desc: "Dextograma ist ein Rechner für das Schwangerschaftsalter, entwickelt für den professionellen und persönlichen Gebrauch.",
+        app_details: "Er ermöglicht die Berechnung nach LMP oder erstem Ultraschall, zeigt die Schlüsseltermine zwischen der 37. und 42. Woche an und führt zukünftige Datumsberechnungen schnell und präzise durch.",
+        author_title: "Über den Autor",
+        author_bio: "Gynäkologe von Beruf, mit einer Leidenschaft für Technologie und die Entwicklung nützlicher Werkzeuge für die tägliche medizinische Praxis.",
+        contact_label: "Kontakt",
+        back_home: "← Zur Startseite"
+    }
+};
+
+function applyLanguage() {
+    const userLang = navigator.language.split('-')[0];
+    const lang = translations[userLang] ? userLang : 'en';
+
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+}
+
+window.onload = applyLanguage;
+</script>
+
+</body>
+</html>
