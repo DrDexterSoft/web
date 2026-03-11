@@ -60,12 +60,6 @@
         <a href="#screenshots" class="hover:text-brand transition-colors" data-i18n="nav_gallery">Galería</a>
         <a href="#about" class="hover:text-brand transition-colors" data-i18n="nav_about">Acerca de</a>
         <a href="privacidad.html" class="hover:text-brand transition-colors" data-i18n="nav_privacy">Privacidad</a>
-
-        <a id="playLink" href="https://play.google.com/store/apps/details?id=com.drdextersoft.app.myapplication" target="_blank"
-           class="bg-brand text-white px-5 py-2 rounded-full text-sm font-bold hover:opacity-90 transition shadow-md"
-           data-i18n="nav_get">
-          Descargar
-        </a>
       </div>
 
       <button onclick="toggleMenu()" class="md:hidden text-brand text-2xl p-2">
@@ -95,12 +89,14 @@
   </a>
 
   <!-- Apple badge oficial -->
-  <a href="#"
-     onclick="showComingSoon(event)"
-     class="transition hover:scale-105 inline-flex items-center justify-center">
-    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
-         class="h-12" alt="App Store">
-  </a>
+<a href="https://apps.apple.com/app/id6759300957"
+   target="_blank"
+   rel="noopener"
+   class="transition hover:scale-105 inline-flex items-center justify-center">
+  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+       class="h-12" alt="Download on the App Store">
+</a>
+
 </div>      </div>
 
       <div class="flex justify-center relative">
@@ -198,36 +194,7 @@
     </div>
   </footer>
 
-<!-- Modal Coming Soon -->
-<div id="comingSoonModal"
-     class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[100]">
-
-  <div class="bg-white rounded-2xl shadow-xl p-8 max-w-sm text-center">
-    <h3 class="text-xl font-bold mb-3 text-gray-900">
-      App Store
-    </h3>
-
-    <p class="text-gray-600 mb-6">
-      Disponible próximamente
-    </p>
-
-    <button onclick="closeComingSoon()"
-            class="bg-brand text-white px-6 py-2 rounded-full font-semibold hover:opacity-90">
-      OK
-    </button>
-  </div>
-</div>
-
   <script>
-function showComingSoon(e) {
-  e.preventDefault();
-  document.getElementById("comingSoonModal").classList.remove("hidden");
-  document.getElementById("comingSoonModal").classList.add("flex");
-}
-
-function closeComingSoon() {
-  document.getElementById("comingSoonModal").classList.add("hidden");
-}
 
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
@@ -253,6 +220,7 @@ function closeComingSoon() {
         hero_desc: "Por FUM o por primera ecografía. Fechas clave (37–42) y cálculo para una fecha futura, en una interfaz rápida y clara.",
         features_title: "Funciones principales",
         features_sub: "Pensado para consultorio y para uso personal: rápido, exacto y sin complicaciones.",
+        nav_get: "Descargar",
         f1_title: "FUM o 1ª eco",
         f1_desc: "Calcula por fecha de última menstruación o por primera ecografía con semanas y días.",
         f2_title: "Fechas 37–42",
@@ -264,6 +232,7 @@ function closeComingSoon() {
         author_subtitle: "Médico y Desarrollador apasionado por crear herramientas digitales para el consultorio.",
         footer_copy: "© 2026 Dextograma. Todos los derechos reservados.",
         author_subtitle2: "Médico ginecólogo de profesión<br>Apasionado por la tecnología"
+        
 
       },
       en: {
@@ -276,6 +245,7 @@ function closeComingSoon() {
         hero_desc: "By LMP or first ultrasound. Key weeks (37–42) and future-date calculation in a fast, clear interface.",
         features_title: "Key features",
         features_sub: "Built for clinic use and personal tracking: fast, accurate, and simple.",
+        nav_get: "Download",
         f1_title: "LMP or 1st US",
         f1_desc: "Calculate from last menstrual period or first ultrasound with weeks and days.",
         f2_title: "Weeks 37–42",
@@ -298,6 +268,7 @@ function closeComingSoon() {
         hero_title: "Calcule a idade gestacional<br><span class='text-blue-200'>em segundos.</span>",
         hero_desc: "Por DUM ou pela primeira ultrassonografia. Semanas-chave (37–42) e cálculo para uma data futura.",
         features_title: "Funções principais",
+        nav_get: "Baixar",
         features_sub: "Pensado para consultório e uso pessoal: rápido, preciso e simples.",
         f1_title: "DUM ou 1ª US",
         f1_desc: "Calcule pela data da última menstruação ou pela primeira ultrassonografia com semanas e dias.",
@@ -322,6 +293,7 @@ function closeComingSoon() {
         hero_desc: "Da LMP o prima ecografia. Settimane chiave (37–42) e calcolo su data futura in un’interfaccia chiara.",
         features_title: "Funzioni principali",
         features_sub: "Per ambulatorio e uso personale: veloce, accurato e semplice.",
+        nav_get: "Scarica",
         f1_title: "LMP o 1ª eco",
         f1_desc: "Calcolo da ultima mestruazione o prima ecografia con settimane e giorni.",
         f2_title: "Settimane 37–42",
@@ -345,6 +317,7 @@ function closeComingSoon() {
         hero_desc: "Par DDR ou 1ère échographie. Semaines clés (37–42) et calcul à une date future dans une interface claire.",
         features_title: "Fonctions principales",
         features_sub: "Pensé pour le cabinet et l’usage personnel : rapide, précis et simple.",
+        nav_get: "Télécharger",
         f1_title: "DDR ou 1ère écho",
         f1_desc: "Calcul via la date des dernières règles ou la première échographie avec semaines et jours.",
         f2_title: "Semaines 37–42",
@@ -368,6 +341,7 @@ function closeComingSoon() {
         hero_desc: "Per LMP oder erster Ultraschall. Schlüsselwochen (37–42) und Berechnung für ein zukünftiges Datum.",
         features_title: "Hauptfunktionen",
         features_sub: "Für Praxis und privat: schnell, exakt und unkompliziert.",
+        nav_get: "Herunterladen",
         f1_title: "LMP oder 1. US",
         f1_desc: "Berechnung nach letzter Periode oder erstem Ultraschall mit Wochen und Tagen.",
         f2_title: "Wochen 37–42",
