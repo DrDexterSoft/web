@@ -1,23 +1,384 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>LinkDex - Redirigiendo</title>
-    <script type="text/javascript">
-        // Redirección inmediata
-        // Usamos la URL completa para evitar problemas de rutas relativas en Netlify
-        var targetURL = "./linkdex/index.html";
-        
-        if (window.location.protocol !== 'file:') {
-            window.location.replace(targetURL);
-        }
-    </script>
-    <meta http-equiv="refresh" content="2; url=./linkdex/index.html">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="meta_title">Dextograma – Calculadora de Edad Gestacional</title>
+  <link rel="icon" type="image/png" href="assets/icono.png?v=1" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <style>
+    :root { --brand: #0060A8; }
+    .bg-brand { background-color: var(--brand); }
+    .text-brand { color: var(--brand); }
+    .hero-gradient { background: linear-gradient(135deg, #0060A8 0%, #003a66 100%); }
+    html { scroll-behavior: smooth; }
+
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* “inclinada” como LinkDex (solo CSS) */
+    .phone-tilt { transform: rotate(3deg); }
+    .fade-in { animation: fadeIn .7s ease-out both; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  </style>
 </head>
-<body style="background: #0060A8; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; margin: 0;">
-    <div style="text-align: center;">
-        <h2 style="margin-bottom: 20px;">Redirigiendo a tu biblioteca...</h2>
-        <p>Si no eres redirigido en 2 segundos, <a href="./linkdex/index.html" style="color: #93C5FD; font-weight: bold;">haz clic aquí</a>.</p>
+
+<body class="bg-gray-50 font-sans text-gray-900">
+
+  <!-- Mobile menu overlay -->
+  <div id="menu-overlay" class="fixed inset-0 bg-black/50 z-[60] hidden backdrop-blur-sm" onclick="toggleMenu()"></div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-white z-[70] shadow-2xl translate-x-full transition-transform duration-300 flex flex-col p-6 md:hidden">
+    <div class="flex justify-end mb-8">
+      <button onclick="toggleMenu()" class="text-gray-500 text-2xl"><i class="fas fa-times"></i></button>
     </div>
+
+    <nav class="flex flex-col gap-6 font-bold text-gray-800 text-lg">
+      <a href="#features" onclick="toggleMenu()" data-i18n="nav_features">Funciones</a>
+      <a href="#screenshots" onclick="toggleMenu()" data-i18n="nav_gallery">Galería</a>
+      <a href="#about" onclick="toggleMenu()" data-i18n="nav_about">Acerca de</a>
+      <a href="privacidad.html" data-i18n="nav_privacy">Privacidad</a>
+      <hr class="border-gray-100">
+
+    </nav>
+  </div>
+
+  <!-- Top nav -->
+  <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-2">
+        <img src="assets/icono.png" alt="Logo" class="w-10 h-10 rounded-xl shadow-sm">
+        <span class="text-2xl font-bold italic text-brand">Dextograma</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 font-bold text-gray-700">
+        <a href="#features" class="hover:text-brand transition-colors" data-i18n="nav_features">Funciones</a>
+        <a href="#screenshots" class="hover:text-brand transition-colors" data-i18n="nav_gallery">Galería</a>
+        <a href="#about" class="hover:text-brand transition-colors" data-i18n="nav_about">Acerca de</a>
+        <a href="privacidad.html" class="hover:text-brand transition-colors" data-i18n="nav_privacy">Privacidad</a>
+      </div>
+
+      <button onclick="toggleMenu()" class="md:hidden text-brand text-2xl p-2">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero-gradient text-white py-16 md:py-28 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+      <div class="fade-in text-center md:text-left">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight" data-i18n="hero_title">
+          Calcula la edad gestacional<br><span class="text-blue-200">en segundos.</span>
+        </h1>
+        <p class="text-lg mb-8 opacity-90" data-i18n="hero_desc">
+          Por FUM o por primera ecografía. Fechas clave (37–42) y cálculo para una fecha futura, en una interfaz rápida y clara.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 sm:items-center justify-center md:justify-start">
+  <a id="playBadge"
+     href="https://play.google.com/store/apps/details?id=com.drdextersoft.app.myapplication"
+     target="_blank"
+     rel="noopener"
+     class="transition hover:scale-105 inline-flex items-center justify-center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+         class="h-12" alt="Google Play">
+  </a>
+
+  <!-- Apple badge oficial -->
+<a href="https://apps.apple.com/app/id6759300957"
+   target="_blank"
+   rel="noopener"
+   class="transition hover:scale-105 inline-flex items-center justify-center">
+  <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+       class="h-12" alt="Download on the App Store">
+</a>
+
+</div>      </div>
+
+      <div class="flex justify-center relative">
+        <!-- Imagen principal (celular inclinado). Usá ss1 como “hero” -->
+        <img src="assets/ss1.jpg" class="w-64 rounded-[3rem] shadow-2xl border-[8px] border-gray-900 z-10 phone-tilt" alt="Dextograma Screenshot">
+
+        <!-- Fondo suave opcional (ss2) -->
+        <img src="assets/ss2.jpg" class="absolute -left-16 bottom-0 w-72 rounded-2xl opacity-15 hidden lg:block -rotate-12" alt="">
+      </div>
+    </div>
+  </header>
+
+  <!-- Features -->
+  <section id="features" class="py-16 md:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 text-center" data-i18n="features_title">Funciones principales</h2>
+      <p class="text-gray-600 text-center max-w-3xl mx-auto mb-12" data-i18n="features_sub">
+        Pensado para consultorio y para uso personal: rápido, exacto y sin complicaciones.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+          <div class="text-brand text-3xl mb-4"><i class="fa-solid fa-calendar-check"></i></div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="f1_title">FUM o 1ª eco</h3>
+          <p class="text-gray-600" data-i18n="f1_desc">Calcula por fecha de última menstruación o por primera ecografía con semanas y días.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+          <div class="text-brand text-3xl mb-4"><i class="fa-solid fa-baby"></i></div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="f2_title">Fechas 37–42</h3>
+          <p class="text-gray-600" data-i18n="f2_desc">Muestra automáticamente la fecha exacta de 37, 38, 39, 40, 41 y 42 semanas.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+          <div class="text-brand text-3xl mb-4"><i class="fa-solid fa-clock"></i></div>
+          <h3 class="font-bold text-xl mb-2" data-i18n="f3_title">Cálculo futuro</h3>
+          <p class="text-gray-600" data-i18n="f3_desc">Ingresa una fecha o una semana objetivo y obtén el resultado de forma instantánea.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section id="screenshots" class="py-16 bg-white border-y border-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 text-center" data-i18n="gallery_title">Galería</h2>
+      <p class="text-gray-600 text-center max-w-3xl mx-auto mb-10" data-i18n="gallery_sub">
+        Capturas reales de la app.
+      </p>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <img src="assets/ss1.jpg" class="rounded-3xl shadow-md border border-gray-100" alt="ss1">
+        <img src="assets/ss2.jpg" class="rounded-3xl shadow-md border border-gray-100" alt="ss2">
+        <img src="assets/ss3.jpg" class="rounded-3xl shadow-md border border-gray-100" alt="ss3">
+        <img src="assets/ss4.jpg" class="rounded-3xl shadow-md border border-gray-100" alt="ss4">
+        <img src="assets/ss5.jpg" class="rounded-3xl shadow-md border border-gray-100" alt="ss5">
+        <img src="assets/ss6.jpg" class="rounded-3xl shadow-md border border-gray-100" alt="ss6">
+      </div>
+    </div>
+  </section>
+
+  <!-- About (estilo como tu captura) -->
+  <section id="about" class="py-20 max-w-5xl mx-auto px-4">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <a href="about.html" class="inline-block mb-8">
+        <div class="w-48 h-48 rounded-full border-4 border-gray-100 shadow-xl overflow-hidden mx-auto hover:scale-105 transition-transform duration-300">
+          <img src="assets/foto.jpeg" alt="Dr. Victor Oviedo" class="w-full h-full object-cover">
+        </div>
+      </a>
+
+      <a href="about.html" class="block group">
+        <h2 class="text-4xl font-bold text-gray-900 mb-2 group-hover:text-brand transition-colors">Dr. Victor Oviedo</h2>
+      </a>
+
+  <p class="text-xl text-gray-600 mb-8" data-i18n="author_subtitle2">
+  Médico ginecólogo de profesión<br>
+  Apasionado por la tecnología
+</p>
+
+      <div class="flex justify-center gap-6 text-3xl text-brand">
+        <a href="https://instagram.com/drvictoroviedo" target="_blank" class="hover:opacity-75 transition-opacity" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="mailto:drvictoroviedo@gmail.com" target="_blank" class="hover:opacity-75 transition-opacity" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-900 text-gray-400 py-12 text-center border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-4">
+      <img src="assets/icono.png" class="w-10 h-10 mx-auto mb-4 rounded-lg opacity-50" alt="Logo">
+      <p class="text-sm mb-4" data-i18n="footer_copy">© 2026 Dextograma. Todos los derechos reservados.</p>
+      <div class="flex justify-center gap-6 text-xs uppercase tracking-widest">
+        <a href="privacidad.html" class="hover:text-white transition-colors" data-i18n="nav_privacy">Política de Privacidad</a>
+        <a href="about.html" class="hover:text-white transition-colors" data-i18n="nav_about">Sobre el Autor</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const overlay = document.getElementById('menu-overlay');
+      const isOpen = !menu.classList.contains('translate-x-full');
+      if (isOpen) {
+        menu.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
+      } else {
+        menu.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
+      }
+    }
+
+    const translations = {
+      es: {
+        meta_title: "Dextograma – Calculadora de Edad Gestacional",
+        nav_features: "Funciones",
+        nav_gallery: "Galería",
+        nav_about: "Acerca de",
+        nav_privacy: "Privacidad",
+        hero_title: "Calcula la edad gestacional<br><span class='text-blue-200'>en segundos.</span>",
+        hero_desc: "Por FUM o por primera ecografía. Fechas clave (37–42) y cálculo para una fecha futura, en una interfaz rápida y clara.",
+        features_title: "Funciones principales",
+        features_sub: "Pensado para consultorio y para uso personal: rápido, exacto y sin complicaciones.",
+        nav_get: "Descargar",
+        f1_title: "FUM o 1ª eco",
+        f1_desc: "Calcula por fecha de última menstruación o por primera ecografía con semanas y días.",
+        f2_title: "Fechas 37–42",
+        f2_desc: "Muestra automáticamente la fecha exacta de 37, 38, 39, 40, 41 y 42 semanas.",
+        f3_title: "Cálculo futuro",
+        f3_desc: "Ingresa una fecha o una semana objetivo y obtén el resultado de forma instantánea.",
+        gallery_title: "Galería",
+        gallery_sub: "Capturas reales de la app.",
+        author_subtitle: "Médico y Desarrollador apasionado por crear herramientas digitales para el consultorio.",
+        footer_copy: "© 2026 Dextograma. Todos los derechos reservados.",
+        author_subtitle2: "Médico ginecólogo de profesión<br>Apasionado por la tecnología"
+        
+
+      },
+      en: {
+        meta_title: "Dextograma – Gestational Age Calculator",
+        nav_features: "Features",
+        nav_gallery: "Gallery",
+        nav_about: "About",
+        nav_privacy: "Privacy",
+        hero_title: "Calculate gestational age<br><span class='text-blue-200'>in seconds.</span>",
+        hero_desc: "By LMP or first ultrasound. Key weeks (37–42) and future-date calculation in a fast, clear interface.",
+        features_title: "Key features",
+        features_sub: "Built for clinic use and personal tracking: fast, accurate, and simple.",
+        nav_get: "Download",
+        f1_title: "LMP or 1st US",
+        f1_desc: "Calculate from last menstrual period or first ultrasound with weeks and days.",
+        f2_title: "Weeks 37–42",
+        f2_desc: "Automatically shows exact dates for 37, 38, 39, 40, 41 and 42 weeks.",
+        f3_title: "Future calculation",
+        f3_desc: "Enter a date or target week and get the result instantly.",
+        gallery_title: "Gallery",
+        gallery_sub: "Real app screenshots.",
+        author_subtitle: "Doctor & Developer passionate about building practical tools for daily clinic work.",
+        footer_copy: "© 2026 Dextograma. All rights reserved.",
+        author_subtitle2: "OB/GYN physician by profession<br>Passionate about technology"
+
+      },
+      pt: {
+        meta_title: "Dextograma – Calculadora de Idade Gestacional",
+        nav_features: "Funções",
+        nav_gallery: "Galeria",
+        nav_about: "Sobre",
+        nav_privacy: "Privacidade",
+        hero_title: "Calcule a idade gestacional<br><span class='text-blue-200'>em segundos.</span>",
+        hero_desc: "Por DUM ou pela primeira ultrassonografia. Semanas-chave (37–42) e cálculo para uma data futura.",
+        features_title: "Funções principais",
+        nav_get: "Baixar",
+        features_sub: "Pensado para consultório e uso pessoal: rápido, preciso e simples.",
+        f1_title: "DUM ou 1ª US",
+        f1_desc: "Calcule pela data da última menstruação ou pela primeira ultrassonografia com semanas e dias.",
+        f2_title: "Semanas 37–42",
+        f2_desc: "Mostra automaticamente as datas exatas de 37, 38, 39, 40, 41 e 42 semanas.",
+        f3_title: "Cálculo futuro",
+        f3_desc: "Insira uma data ou semana-alvo e obtenha o resultado instantaneamente.",
+        gallery_title: "Galeria",
+        gallery_sub: "Capturas reais do app.",
+        author_subtitle: "Médico e Desenvolvedor apaixonado por criar ferramentas práticas para o consultório.",
+        footer_copy: "© 2026 Dextograma. Todos os direitos reservados.",
+        author_subtitle2: "Médico ginecologista por profissão<br>Apaixonado por tecnologia"
+
+      },
+      it: {
+        meta_title: "Dextograma – Calcolatore Età Gestazionale",
+        nav_features: "Funzioni",
+        nav_gallery: "Galleria",
+        nav_about: "Info",
+        nav_privacy: "Privacy",
+        hero_title: "Calcola l’età gestazionale<br><span class='text-blue-200'>in pochi secondi.</span>",
+        hero_desc: "Da LMP o prima ecografia. Settimane chiave (37–42) e calcolo su data futura in un’interfaccia chiara.",
+        features_title: "Funzioni principali",
+        features_sub: "Per ambulatorio e uso personale: veloce, accurato e semplice.",
+        nav_get: "Scarica",
+        f1_title: "LMP o 1ª eco",
+        f1_desc: "Calcolo da ultima mestruazione o prima ecografia con settimane e giorni.",
+        f2_title: "Settimane 37–42",
+        f2_desc: "Mostra automaticamente le date esatte di 37, 38, 39, 40, 41 e 42 settimane.",
+        f3_title: "Calcolo futuro",
+        f3_desc: "Inserisci una data o una settimana obiettivo e ottieni il risultato subito.",
+        gallery_title: "Galleria",
+        gallery_sub: "Screenshot reali dell’app.",
+        author_subtitle: "Medico e sviluppatore appassionato di strumenti pratici per l’ambulatorio.",
+        footer_copy: "© 2026 Dextograma. Tutti i diritti riservati.",
+        author_subtitle2: "Medico ginecologo di professione<br>Appassionato di tecnologia"
+
+      },
+      fr: {
+        meta_title: "Dextograma – Calculateur d’âge gestationnel",
+        nav_features: "Fonctions",
+        nav_gallery: "Galerie",
+        nav_about: "À propos",
+        nav_privacy: "Confidentialité",
+        hero_title: "Calculez l’âge gestationnel<br><span class='text-blue-200'>en quelques secondes.</span>",
+        hero_desc: "Par DDR ou 1ère échographie. Semaines clés (37–42) et calcul à une date future dans une interface claire.",
+        features_title: "Fonctions principales",
+        features_sub: "Pensé pour le cabinet et l’usage personnel : rapide, précis et simple.",
+        nav_get: "Télécharger",
+        f1_title: "DDR ou 1ère écho",
+        f1_desc: "Calcul via la date des dernières règles ou la première échographie avec semaines et jours.",
+        f2_title: "Semaines 37–42",
+        f2_desc: "Affiche automatiquement les dates exactes des semaines 37, 38, 39, 40, 41 et 42.",
+        f3_title: "Calcul futur",
+        f3_desc: "Entrez une date ou une semaine cible et obtenez le résultat instantanément.",
+        gallery_title: "Galerie",
+        gallery_sub: "Captures réelles de l’app.",
+        author_subtitle: "Médecin & développeur, passionné par des outils pratiques pour le cabinet.",
+        footer_copy: "© 2026 Dextograma. Tous droits réservés.",
+        author_subtitle2: "Gynécologue-obstétricien de profession<br>Passionné par la technologie"
+
+      },
+      de: {
+        meta_title: "Dextograma – Rechner für Schwangerschaftswoche",
+        nav_features: "Funktionen",
+        nav_gallery: "Galerie",
+        nav_about: "Über",
+        nav_privacy: "Datenschutz",
+         hero_title: "Schwangerschaftsalter berechnen<br><span class='text-blue-200'>in Sekunden.</span>",
+        hero_desc: "Per LMP oder erster Ultraschall. Schlüsselwochen (37–42) und Berechnung für ein zukünftiges Datum.",
+        features_title: "Hauptfunktionen",
+        features_sub: "Für Praxis und privat: schnell, exakt und unkompliziert.",
+        nav_get: "Herunterladen",
+        f1_title: "LMP oder 1. US",
+        f1_desc: "Berechnung nach letzter Periode oder erstem Ultraschall mit Wochen und Tagen.",
+        f2_title: "Wochen 37–42",
+        f2_desc: "Zeigt automatisch die exakten Daten für 37, 38, 39, 40, 41 und 42 Wochen.",
+        f3_title: "Zukunftsberechnung",
+        f3_desc: "Datum oder Zielwoche eingeben und sofort das Ergebnis erhalten.",
+        gallery_title: "Galerie",
+        gallery_sub: "Echte App-Screenshots.",
+        author_subtitle: "Arzt & Entwickler – praktische Tools für den Praxisalltag.",
+        footer_copy: "© 2026 Dextograma. Alle Rechte vorbehalten.",
+        author_subtitle2: "Gynäkologe von Beruf<br>Begeistert von Technologie"
+      }
+    };
+
+    function getBrowserLang() {
+      const l = (navigator.language || 'en').split('-')[0];
+      return translations[l] ? l : 'en';
+    }
+
+    function applyLang(lang) {
+      const t = translations[lang] || translations.en;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.innerHTML = t[key];
+      });
+
+      // Título/SEO
+      document.title = t.meta_title;
+    }
+
+ function initLang() {
+  const lang = getBrowserLang(); // solo navegador
+  applyLang(lang);
+}
+    window.onload = initLang;
+  </script>
 </body>
 </html>
