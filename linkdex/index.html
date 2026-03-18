@@ -119,13 +119,21 @@
         <div class="max-w-7xl mx-auto px-4">
             <div class="bg-gray-50 rounded-[3rem] p-4 md:p-12 border border-gray-100 shadow-inner min-h-[600px]">
                 <div id="auth-ui" class="text-center py-20">
-                    <h2 class="text-3xl font-bold mb-4" data-i18n="web_title">Accede a tus enlaces</h2>
-                    <p class="text-gray-500 mb-8" data-i18n="web_subtitle">Inicia sesión con tu cuenta de Google para ver tu biblioteca.</p>
-                    <button onclick="login()" class="bg-white border-2 border-gray-200 flex items-center gap-3 px-8 py-4 rounded-2xl mx-auto hover:bg-gray-50 transition shadow-sm font-bold">
-                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
-                        <span data-i18n="btn_login">Continuar con Google</span>
-                    </button>
-                </div>
+    <h2 class="text-3xl font-bold mb-4" data-i18n="web_title">Accede a tus enlaces</h2>
+    <p class="text-gray-500 mb-8" data-i18n="web_subtitle">Inicia sesión para ver tu biblioteca.</p>
+    
+    <div class="flex flex-col gap-4 max-w-xs mx-auto">
+        <button onclick="login('google')" class="bg-white border-2 border-gray-200 flex items-center gap-3 px-8 py-4 rounded-2xl w-full hover:bg-gray-50 transition shadow-sm font-bold">
+            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
+            <span data-i18n="btn_login_google">Continuar con Google</span>
+        </button>
+
+        <button onclick="login('apple')" class="bg-black text-white flex items-center gap-3 px-8 py-4 rounded-2xl w-full hover:bg-gray-900 transition shadow-sm font-bold">
+            <i class="fab fa-apple text-xl"></i>
+            <span data-i18n="btn_login_apple">Continuar con Apple</span>
+        </button>
+    </div>
+</div>
 
                 <div id="dashboard-ui" class="hidden">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b pb-6 gap-4">
@@ -185,7 +193,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
@@ -222,6 +230,8 @@
                 footer_copy: "© 2026 LinkDex. Todos los derechos reservados.",
                 ios_coming_soon: "¡Próximamente! Lanzamiento en iOS en febrero de 2026.",
                 status_premium: "Usuario Premium", status_standard: "Plan Estándar",
+                btn_login_google: "Continuar con Google",
+                btn_login_apple: "Continuar con Apple",
                 links_saved: "links guardados"
             },
             en: {
@@ -239,6 +249,8 @@
                 footer_copy: "© 2026 LinkDex. All rights reserved.",
                 ios_coming_soon: "Coming soon! Launching on iOS in February 2026.",
                 status_premium: "Premium User", status_standard: "Standard Plan",
+                btn_login_google: "Continue with Google",
+                btn_login_apple: "Continue with Apple",
                 links_saved: "links saved"
             },
             pt: {
@@ -256,6 +268,8 @@
                 footer_copy: "© 2026 LinkDex. Todos os direitos reservados.",
                 ios_coming_soon: "Em breve! Lançamento no iOS em fevereiro de 2026.",
                 status_premium: "Usuário Premium", status_standard: "Plano Padrão",
+                btn_login_google: "Continuar com Google",
+                btn_login_apple: "Continuar com Apple",
                 links_saved: "links salvos"
             },
             fr: {
@@ -273,6 +287,8 @@
                 footer_copy: "© 2026 LinkDex. Tous droits réservés.",
                 ios_coming_soon: "Bientôt disponible ! Lancement sur iOS en février 2026.",
                 status_premium: "Utilisateur Premium", status_standard: "Version Gratuite",
+                btn_login_google: "Continuer avec Google",
+                btn_login_apple: "Continuer avec Apple",
                 links_saved: "liens enregistrés"
             },
             de: {
@@ -290,6 +306,8 @@
                 footer_copy: "© 2026 LinkDex. Alle Rechte vorbehalten.",
                 ios_coming_soon: "Demnächst! iOS-Launch im Februar 2026.",
                 status_premium: "Premium-Benutzer", status_standard: "Basis-Plan",
+                btn_login_google: "Weiter mit Google",
+                btn_login_apple: "Weiter mit Apple",
                 links_saved: "Links gespeichert"
             },
             it: {
@@ -307,6 +325,8 @@
                 footer_copy: "© 2026 LinkDex. Tutti i diritti riservati.",
                 ios_coming_soon: "In arrivo! Lancio su iOS a febbraio 2026.",
                 status_premium: "Utente Premium", status_standard: "Piano Standard",
+                btn_login_google: "Continua con Google",
+                btn_login_apple: "Continua con Apple",
                 links_saved: "link salvati"
             }
         };
@@ -331,7 +351,28 @@
         }
         translate();
 
-        window.login = () => signInWithPopup(auth, new GoogleAuthProvider());
+window.login = (providerName) => {
+    let provider;
+    
+    if (providerName === 'apple') {
+        provider = new OAuthProvider('apple.com');
+        provider.addScope('email');
+        provider.addScope('name');
+    } else {
+        provider = new GoogleAuthProvider();
+    }
+    
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            console.log("Login exitoso con " + providerName);
+        })
+        .catch((error) => {
+            console.error("Error de Auth:", error);
+            if (error.code === 'auth/account-exists-with-different-credential') {
+                alert("Ya existe una cuenta con este email vinculada a otro proveedor.");
+            }
+        });
+};
         window.logout = () => {
             signOut(auth);
             location.reload();
