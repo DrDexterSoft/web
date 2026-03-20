@@ -118,23 +118,37 @@
     <section id="web-app" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4">
             <div class="bg-gray-50 rounded-[3rem] p-4 md:p-12 border border-gray-100 shadow-inner min-h-[600px]">
-                <div id="auth-ui" class="text-center py-20">
+<div id="auth-ui" class="text-center py-10 max-w-sm mx-auto">
     <h2 class="text-3xl font-bold mb-4" data-i18n="web_title">Accede a tus enlaces</h2>
     <p class="text-gray-500 mb-8" data-i18n="web_subtitle">Inicia sesión para ver tu biblioteca.</p>
     
-    <div class="flex flex-col gap-4 max-w-xs mx-auto">
-        <button onclick="login('google')" class="bg-white border-2 border-gray-200 flex items-center gap-3 px-8 py-4 rounded-2xl w-full hover:bg-gray-50 transition shadow-sm font-bold">
-            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20">
-            <span data-i18n="btn_login_google">Continuar con Google</span>
-        </button>
-
-        <button onclick="login('apple')" class="bg-black text-white flex items-center gap-3 px-8 py-4 rounded-2xl w-full hover:bg-gray-900 transition shadow-sm font-bold">
-            <i class="fab fa-apple text-xl"></i>
-            <span data-i18n="btn_login_apple">Continuar con Apple</span>
-        </button>
-    </div>
+    <div class="flex flex-col gap-3 mb-6">
+    <input type="email" id="login-email" placeholder="Correo electrónico" class="px-5 py-3 rounded-2xl border-2 border-gray-100 focus:border-blue-500 outline-none transition text-sm">
+    <input type="password" id="login-password" placeholder="Contraseña" class="px-5 py-3 rounded-2xl border-2 border-gray-100 focus:border-blue-500 outline-none transition text-sm">
+    <button onclick="loginWithEmail()" class="bg-linkdex text-white py-3 rounded-2xl font-bold shadow-md hover:bg-blue-800 transition text-sm" data-i18n="btn_login_email">
+        Entrar con mi cuenta
+    </button>
 </div>
 
+<div class="flex items-center gap-4 mb-6 opacity-30">
+    <hr class="flex-grow border-gray-400"> 
+    <span class="text-[10px] font-bold uppercase tracking-widest" data-i18n="or_separator">o</span> 
+    <hr class="flex-grow border-gray-400">
+</div>
+
+<div class="flex flex-col gap-3">
+    <button onclick="login('google')" class="bg-white border-2 border-gray-200 flex items-center gap-3 px-8 py-3 rounded-2xl w-full hover:bg-gray-50 transition shadow-sm font-bold text-sm">
+        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18">
+        <span data-i18n="btn_login_google">Continuar con Google</span>
+    </button>
+
+    <button onclick="login('apple')" class="bg-black text-white flex items-center gap-3 px-8 py-3 rounded-2xl w-full hover:bg-gray-900 transition shadow-sm font-bold text-sm">
+        <i class="fab fa-apple text-xl"></i>
+        <span data-i18n="btn_login_apple">Continuar con Apple</span>
+    </button>
+</div>  
+</div>  
+    
                 <div id="dashboard-ui" class="hidden">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 border-b pb-6 gap-4">
                         <div>
@@ -147,7 +161,7 @@
 
                     <div class="flex flex-col md:flex-row gap-8">
                         <aside class="w-full md:w-64 bg-white rounded-3xl p-4 shadow-sm border border-gray-100 h-fit sticky top-24">
-                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 px-4">Carpetas</h3>
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 px-4" data-i18n="folders_title">Carpetas</h3>
                             <nav id="folders-list" class="flex flex-col gap-1">
                                 </nav>
                         </aside>
@@ -193,7 +207,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, GoogleAuthProvider, OAuthProvider, signInWithPopup, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
         import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
@@ -223,8 +237,10 @@
                 feat_1_t: "Organización sin límites", feat_1_d: "Clasifica tus Reels, vídeos y artículos en carpetas personalizadas.",
                 feat_2_t: "Encuentra al instante", feat_2_d: "Nuestra búsqueda inteligente escanea títulos y etiquetas simultáneamente.",
                 feat_3_t: "Tu mundo sincronizado", feat_3_d: "Tus enlaces te siguen a todas partes. Accede desde Android, Web e iOS.",
-                gallery_title: "Capturas de Pantalla", web_title: "Accede a tus enlaces", web_subtitle: "Inicia sesión con tu cuenta de Google para ver tu biblioteca.",
-                btn_login: "Continuar con Google", dash_title: "Mi Biblioteca", btn_logout: "Cerrar Sesión",
+                gallery_title: "Capturas de Pantalla", web_title: "Accede a tus enlaces", web_subtitle: "Inicia sesión para acceder a tu biblioteca.",
+                btn_login_email: "Entrar con mi cuenta",
+                or_separator: "o",  
+                dash_title: "Mi Biblioteca", btn_logout: "Cerrar Sesión",
                 author_subtitle: "Médico y Desarrollador apasionado por crear herramientas digitales.",
                 nav_privacy: "Política de Privacidad", nav_about: "Sobre el Autor",
                 footer_copy: "© 2026 LinkDex. Todos los derechos reservados.",
@@ -232,7 +248,17 @@
                 status_premium: "Usuario Premium", status_standard: "Plan Estándar",
                 btn_login_google: "Continuar con Google",
                 btn_login_apple: "Continuar con Apple",
-                links_saved: "links guardados"
+                links_saved: "links guardados",
+                fill_all_fields: "Por favor, completa todos los campos.",
+                login_error_generic: "Error al iniciar sesión.",
+                login_error_invalid: "Correo o contraseña incorrectos.",
+                login_error_disabled: "Esta cuenta ha sido deshabilitada.",
+                sync_first_mobile: "Usa la app móvil para sincronizar tus enlaces por primera vez.",
+                auth_error_account_exists: "Ya existe una cuenta con este correo vinculada a otro proveedor.",
+                untitled: "Sin título",
+                general_folder: "General",
+                folders_title: "Carpetas",
+                all_folder: "Todos"
             },
             en: {
                 nav_features: "Features", nav_gallery: "Gallery", nav_guide: "How to use", nav_webapp: "Web App", nav_login: "Sign In",
@@ -242,8 +268,10 @@
                 feat_1_t: "Unlimited Organization", feat_1_d: "Sort your Reels, videos, and articles into custom folders.",
                 feat_2_t: "Find it Instantly", feat_2_d: "Our smart search scans titles and tags simultaneously.",
                 feat_3_t: "Your World, Synced", feat_3_d: "Your links follow you everywhere. Access from Android, Web, and iOS.",
-                gallery_title: "App Screenshots", web_title: "Access your links", web_subtitle: "Sign in with your Google account to view your library.",
-                btn_login: "Continue with Google", dash_title: "My Library", btn_logout: "Sign Out",
+                gallery_title: "App Screenshots", web_title: "Access your links", web_subtitle: "Sign in to access your library.",
+                btn_login_email: "Sign in with my account",
+                or_separator: "or",
+                dash_title: "My Library", btn_logout: "Sign Out",
                 author_subtitle: "Doctor and Developer passionate about creating tools that simplify digital life.",
                 nav_privacy: "Privacy Policy", nav_about: "About the Author",
                 footer_copy: "© 2026 LinkDex. All rights reserved.",
@@ -251,7 +279,17 @@
                 status_premium: "Premium User", status_standard: "Standard Plan",
                 btn_login_google: "Continue with Google",
                 btn_login_apple: "Continue with Apple",
-                links_saved: "links saved"
+                links_saved: "links saved",
+                fill_all_fields: "Please fill in all fields.",
+                login_error_generic: "Error signing in.",
+                login_error_invalid: "Incorrect email or password.",
+                login_error_disabled: "This account has been disabled.",
+                sync_first_mobile: "Use the mobile app to sync your links for the first time.",
+                auth_error_account_exists: "An account already exists with this email using a different provider.",
+                untitled: "Untitled",
+                general_folder: "General",
+                folders_title: "Folders",
+                all_folder: "All"
             },
             pt: {
                 nav_features: "Recursos", nav_gallery: "Galeria", nav_guide: "Guia de uso", nav_webapp: "Web App", nav_login: "Entrar",
@@ -261,8 +299,10 @@
                 feat_1_t: "Organização sem limites", feat_1_d: "Classifique seus Reels, vídeos e artigos em pastas personalizadas.",
                 feat_2_t: "Encontre instantaneamente", feat_2_d: "Nossa busca inteligente varre títulos e tags simultaneamente.",
                 feat_3_t: "Seu mundo sincronizado", feat_3_d: "Seus links seguem você em qualquer lugar. Android, Web e iOS.",
-                gallery_title: "Capturas de Tela", web_title: "Acesse seus links", web_subtitle: "Faça login com sua conta do Google para ver sua biblioteca.",
-                btn_login: "Continuar com Google", dash_title: "Minha Biblioteca", btn_logout: "Sair",
+                gallery_title: "Capturas de Tela", web_title: "Acesse seus links", web_subtitle: "Faça login para acessar sua biblioteca.",
+                btn_login_email: "Entrar com minha conta",
+                or_separator: "ou",
+                dash_title: "Minha Biblioteca", btn_logout: "Sair",
                 author_subtitle: "Médico e Desenvolvedor apaixonado por criar ferramentas digitais.",
                 nav_privacy: "Política de Privacidade", nav_about: "Sobre o Autor",
                 footer_copy: "© 2026 LinkDex. Todos os direitos reservados.",
@@ -270,7 +310,17 @@
                 status_premium: "Usuário Premium", status_standard: "Plano Padrão",
                 btn_login_google: "Continuar com Google",
                 btn_login_apple: "Continuar com Apple",
-                links_saved: "links salvos"
+                links_saved: "links salvos",
+                fill_all_fields: "Por favor, preencha todos os campos.",
+                login_error_generic: "Erro ao iniciar sessão.",
+                login_error_invalid: "E-mail ou senha incorretos.",
+                login_error_disabled: "Esta conta foi desativada.",
+                sync_first_mobile: "Use o app móvel para sincronizar seus links pela primeira vez.",
+                auth_error_account_exists: "Já existe uma conta com este e-mail vinculada a outro provedor.",
+                untitled: "Sem título",
+                general_folder: "Geral",
+                folders_title: "Pastas",
+                all_folder: "Todos"
             },
             fr: {
                 nav_features: "Fonctions", nav_gallery: "Galerie", nav_guide: "Guide d’utilisation", nav_webapp: "Web App", nav_login: "Connexion",
@@ -280,8 +330,10 @@
                 feat_1_t: "Organisation sans limites", feat_1_d: "Classez vos Reels, vidéos et articles dans des dossiers personnalisés.",
                 feat_2_t: "Trouvez instantanément", feat_2_d: "Notre recherche intelligente scanne les titres et les tags simultanément.",
                 feat_3_t: "Votre monde synchronisé", feat_3_d: "Vos liens vous suivent partout. Accès via Android, Web et iOS.",
-                gallery_title: "Captures d'écran", web_title: "Accédez à vos liens", web_subtitle: "Connectez-vous avec Google pour voir votre bibliothèque.",
-                btn_login: "Continuer with Google", dash_title: "Ma Bibliothèque", btn_logout: "Déconnexion",
+                gallery_title: "Captures d'écran", web_title: "Accédez à vos liens", web_subtitle: "Connectez-vous pour accéder à votre bibliothèque.",
+                btn_login_email: "Se connecter avec mon compte",
+                or_separator: "ou",
+                dash_title: "Ma Bibliothèque", btn_logout: "Déconnexion",
                 author_subtitle: "Médecin et Développeur passionné par la création d'outils numériques.",
                 nav_privacy: "Politique de Confidentialité", nav_about: "À propos de l'auteur",
                 footer_copy: "© 2026 LinkDex. Tous droits réservés.",
@@ -289,7 +341,17 @@
                 status_premium: "Utilisateur Premium", status_standard: "Version Gratuite",
                 btn_login_google: "Continuer avec Google",
                 btn_login_apple: "Continuer avec Apple",
-                links_saved: "liens enregistrés"
+                links_saved: "liens enregistrés",
+                fill_all_fields: "Veuillez remplir tous les champs.",
+                login_error_generic: "Erreur lors de la connexion.",
+                login_error_invalid: "E-mail ou mot de passe incorrect.",
+                login_error_disabled: "Ce compte a été désactivé.",
+                sync_first_mobile: "Utilisez l’application mobile pour synchroniser vos liens pour la première fois.",
+                auth_error_account_exists: "Un compte existe déjà avec cet e-mail via un autre fournisseur.",
+                untitled: "Sans titre",
+                general_folder: "Général",
+                folders_title: "Dossiers",
+                all_folder: "Tous"
             },
             de: {
                 nav_features: "Funktionen", nav_gallery: "Galerie", nav_guide: "Anleitung", nav_webapp: "Web App", nav_login: "Anmelden",
@@ -299,8 +361,10 @@
                 feat_1_t: "Grenzenlose Organisation", feat_1_d: "Sortieren Sie Ihre Reels, Videos und Artikel in eigene Ordner.",
                 feat_2_t: "Sofort finden", feat_2_d: "Unsere intelligente Suche scannt Titel und Tags gleichzeitig.",
                 feat_3_t: "Ihre Welt, synchronisiert", feat_3_d: "Ihre Links folgen Ihnen überall hin. Android, Web und bald iOS.",
-                gallery_title: "App-Screenshots", web_title: "Zugriff auf deine Links", web_subtitle: "Melde dich mit deinem Google-Konto an.",
-                btn_login: "Weiter mit Google", dash_title: "Meine Bibliothek", btn_logout: "Abmelden",
+                gallery_title: "App-Screenshots", web_title: "Zugriff auf deine Links", web_subtitle: "Melden Sie sich an, um auf Ihre Bibliothek zuzugreifen.",
+                btn_login_email: "Mit meinem Konto anmelden",
+                or_separator: "oder",
+                dash_title: "Meine Bibliothek", btn_logout: "Abmelden",
                 author_subtitle: "Arzt und Entwickler mit Leidenschaft für digitale Tools.",
                 nav_privacy: "Datenschutzrichtlinie", nav_about: "Über den Autor",
                 footer_copy: "© 2026 LinkDex. Alle Rechte vorbehalten.",
@@ -308,7 +372,17 @@
                 status_premium: "Premium-Benutzer", status_standard: "Basis-Plan",
                 btn_login_google: "Weiter mit Google",
                 btn_login_apple: "Weiter mit Apple",
-                links_saved: "Links gespeichert"
+                links_saved: "Links gespeichert",
+                fill_all_fields: "Bitte füllen Sie alle Felder aus.",
+                login_error_generic: "Fehler beim Anmelden.",
+                login_error_invalid: "E-Mail oder Passwort ist falsch.",
+                login_error_disabled: "Dieses Konto wurde deaktiviert.",
+                sync_first_mobile: "Verwenden Sie die mobile App, um Ihre Links zum ersten Mal zu synchronisieren.",
+                auth_error_account_exists: "Es existiert bereits ein Konto mit dieser E-Mail bei einem anderen Anbieter.",
+                untitled: "Ohne Titel",
+                general_folder: "Allgemein",
+                folders_title: "Ordner",
+                all_folder: "Alle"
             },
             it: {
                 nav_features: "Funzioni", nav_gallery: "Galleria", nav_guide: "Guida all’uso", nav_webapp: "Web App", nav_login: "Accedi",
@@ -318,8 +392,9 @@
                 feat_1_t: "Organizzazione senza limiti", feat_1_d: "Classifica i tuoi Reel, video e articoli in cartelle personalizzate.",
                 feat_2_t: "Trova all'istante", feat_2_d: "La nostra ricerca intelligente scansiona titoli e tag contemporaneamente.",
                 feat_3_t: "Il tuo mondo sincronizzato", feat_3_d: "I tuoi link ti seguono ovunque. Android, Web e presto iOS.",
-                gallery_title: "Screenshot dell'App", web_title: "Accedi ai tuoi link", web_subtitle: "Accedi con il tuo account Google.",
-                btn_login: "Continua con Google", dash_title: "La mia Libreria", btn_logout: "Esci",
+                gallery_title: "Screenshot dell'App", web_title: "Accedi ai tuoi link", web_subtitle: "Accedi per consultare la tua libreria.",
+                btn_login_email: "Accedi con il mio account",
+                or_separator: "o", dash_title: "La mia Libreria", btn_logout: "Esci",
                 author_subtitle: "Medico e Sviluppatore appassionato di creazione di strumenti digitali.",
                 nav_privacy: "Informativa sulla Privacy", nav_about: "Sull'Autore",
                 footer_copy: "© 2026 LinkDex. Tutti i diritti riservati.",
@@ -327,7 +402,17 @@
                 status_premium: "Utente Premium", status_standard: "Piano Standard",
                 btn_login_google: "Continua con Google",
                 btn_login_apple: "Continua con Apple",
-                links_saved: "link salvati"
+                links_saved: "link salvati",
+                fill_all_fields: "Per favore, compila tutti i campi.",
+                login_error_generic: "Errore durante l'accesso.",
+                login_error_invalid: "Email o password non corretti.",
+                login_error_disabled: "Questo account è stato disabilitato.",
+                sync_first_mobile: "Usa l'app mobile per sincronizzare i tuoi link per la prima volta.",
+                auth_error_account_exists: "Esiste già un account con questa email associato a un altro provider.",
+                untitled: "Senza titolo",
+                general_folder: "Generale",
+                folders_title: "Cartelle",
+                all_folder: "Tutti"
             }
         };
 
@@ -369,7 +454,8 @@ window.login = (providerName) => {
         .catch((error) => {
             console.error("Error de Auth:", error);
             if (error.code === 'auth/account-exists-with-different-credential') {
-                alert("Ya existe una cuenta con este email vinculada a otro proveedor.");
+                const t = getI18n();
+alert(t.auth_error_account_exists);
             }
         });
 };
@@ -377,7 +463,10 @@ window.login = (providerName) => {
             signOut(auth);
             location.reload();
         };
-        window.scrollToSection = (id) => document.getElementById(id).scrollIntoView();
+window.scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView();
+};
 
         onAuthStateChanged(auth, async (user) => {
             const authUi = document.getElementById('auth-ui');
@@ -420,22 +509,28 @@ window.login = (providerName) => {
 
             } catch (error) {
                 console.error("Error en sincronización:", error);
-                document.getElementById('links-grid').innerHTML = `
-                    <div class="col-span-full text-center py-20">
-                        <i class="fas fa-mobile-alt text-4xl text-gray-300 mb-4"></i>
-                        <p class="text-gray-500">Usa la App móvil para sincronizar tus enlaces por primera vez.</p>
-                    </div>`;
+ document.getElementById('links-grid').innerHTML = `
+    <div class="col-span-full text-center py-20">
+        <i class="fas fa-mobile-alt text-4xl text-gray-300 mb-4"></i>
+        <p class="text-gray-500">${t.sync_first_mobile}</p>
+    </div>`;
             }
         }
 
         function renderFolders() {
             const list = document.getElementById('folders-list');
-            const folders = ["Todos", ...new Set(allLinks.map(l => l.groupName))].filter(f => f !== "Todos");
+            const folders = ["Todos", ...new Set(
+    allLinks
+        .map(l => l.groupName)
+        .filter(g => g && g.trim() !== "")
+)].filter(f => f !== "Todos");
             
-            let html = `
-                <button onclick="filterByFolder('Todos')" class="flex items-center gap-3 px-4 py-3 rounded-2xl w-full text-left transition ${currentFolder === 'Todos' ? 'sidebar-active' : 'hover:bg-gray-100 text-gray-600'}">
-                    <i class="fas fa-th-large w-5"></i> Todos
-                </button>`;
+         const t = getI18n();
+
+let html = `
+    <button onclick="filterByFolder('Todos')" class="flex items-center gap-3 px-4 py-3 rounded-2xl w-full text-left transition ${currentFolder === 'Todos' ? 'sidebar-active' : 'hover:bg-gray-100 text-gray-600'}">
+        <i class="fas fa-th-large w-5"></i> ${t.all_folder}
+    </button>`;
 
             folders.sort().forEach(folder => {
                 html += `
@@ -455,6 +550,7 @@ window.login = (providerName) => {
 
         function renderLinks() {
             const grid = document.getElementById('links-grid');
+            const t = getI18n();
             grid.innerHTML = "";
 
             const filtered = currentFolder === "Todos" 
@@ -466,17 +562,20 @@ window.login = (providerName) => {
 
             filtered.forEach(link => {
                 const thumb = link.thumbnailUrl || `https://www.google.com/s2/favicons?sz=128&domain_url=${link.url}`;
-                const hostname = new URL(link.url).hostname.replace('www.', '');
+                let hostname = 'link';
+try {
+    hostname = new URL(link.url).hostname.replace('www.', '');
+} catch (_) {}
                 
                 grid.innerHTML += `
                     <div class="bg-white p-4 rounded-3xl shadow-sm border border-gray-100 link-card cursor-pointer flex flex-col h-full group" onclick="window.open('${link.url}', '_blank')">
                         <div class="relative w-full h-32 mb-4 overflow-hidden rounded-2xl bg-gray-100">
                             <img src="${thumb}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://www.google.com/s2/favicons?sz=128&domain_url=${link.url}'">
                         </div>
-                        <h4 class="font-bold text-sm line-clamp-2 mb-2 flex-grow text-gray-800">${link.title || 'Sin título'}</h4>
+                        <h4 class="font-bold text-sm line-clamp-2 mb-2 flex-grow text-gray-800">${link.title || t.untitled}</h4>
                         <div class="flex items-center justify-between mt-4">
                             <p class="text-[10px] text-linkdex font-bold uppercase tracking-widest">${hostname}</p>
-                            <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[9px] rounded-lg font-bold">${link.groupName || 'General'}</span>
+                            <span class="px-2 py-1 bg-gray-50 text-gray-400 text-[9px] rounded-lg font-bold">${link.groupName || t.general_folder}</span>
                         </div>
                     </div>
                 `;
@@ -490,6 +589,31 @@ window.login = (providerName) => {
             menu.classList.toggle('translate-x-0');
             overlay.classList.toggle('hidden');
         };
+        
+        window.loginWithEmail = () => {
+    const email = document.getElementById('login-email').value.trim();
+    const pass = document.getElementById('login-password').value;
+
+ const t = getI18n();
+
+if (!email || !pass) {
+    alert(t.fill_all_fields);
+    return;
+}
+
+    signInWithEmailAndPassword(auth, email, pass)
+        .then(() => {
+            console.log("Sesión iniciada correctamente con email.");
+        })
+        .catch((error) => {
+            console.error("Error Login Email:", error.code);
+      let mensaje = t.login_error_generic;
+if (error.code === 'auth/invalid-credential') mensaje = t.login_error_invalid;
+if (error.code === 'auth/user-disabled') mensaje = t.login_error_disabled;
+alert(mensaje);
+        });
+};
+
     </script>
 </body>
 </html>
