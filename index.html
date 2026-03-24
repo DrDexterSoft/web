@@ -1,23 +1,149 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>LinkDex - Redirigiendo</title>
-    <script type="text/javascript">
-        // Redirección inmediata
-        // Usamos la URL completa para evitar problemas de rutas relativas en Netlify
-        var targetURL = "./linkdex/index.html";
-        
-        if (window.location.protocol !== 'file:') {
-            window.location.replace(targetURL);
-        }
-    </script>
-    <meta http-equiv="refresh" content="2; url=./linkdex/index.html">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dr. Víctor Oviedo | Inicio</title>
+  <meta name="description" content="Medicina, tecnología y desarrollo de soluciones prácticas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body style="background: #0060A8; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; margin: 0;">
-    <div style="text-align: center;">
-        <h2 style="margin-bottom: 20px;">Redirigiendo a tu biblioteca...</h2>
-        <p>Si no eres redirigido en 2 segundos, <a href="./linkdex/index.html" style="color: #93C5FD; font-weight: bold;">haz clic aquí</a>.</p>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Ir al inicio">
+        <div class="brand-badge">VO</div>
+        <div>
+          <div>Dr. Víctor Oviedo</div>
+          <div class="muted" style="font-size:.9rem;font-weight:600">Medicina + tecnología</div>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Principal">
+        <a data-nav href="index.html">Inicio</a>
+        <a data-nav href="medicina.html">Medicina</a>
+        <a data-nav href="apps.html">Apps y proyectos</a>
+        <a data-nav href="about.html">Sobre mí</a>
+        <a data-nav href="contacto.html">Contacto</a>
+      </nav>
     </div>
+  </header>
+
+  
+
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Dr. Víctor Oviedo</span>
+        <h1>Medicina y tecnología, dos áreas cada vez más interconectadas.</h1>
+<div style="margin-top: 24px;">
+
+  <h3 style="margin-bottom: 16px;">Médico</h3>
+
+  <div class="grid-2">
+    
+    <div class="card">
+      <strong>Especialista en:</strong><br>
+      <strong>Ginecología y Obstetricia</strong>
+    </div>
+
+    <div class="card">
+      <strong>Cirugías Mínimamente invasivas</strong>
+      <div class="muted">Endometriosis</div>
+      <div class="muted">Patologías benignas</div>
+    </div>
+
+    <div class="card">
+      <strong>Postgrado en:</strong>
+      <div class="muted">Ecografía Ginecológica</div>
+    </div>
+
+    <div class="card">
+      <strong>Postgrado en:</strong>
+      <div class="muted">Patologías del Tracto Genital Inferior y Colposcopía</div>
+    </div>
+
+  </div>
+
+  <p class="lead" style="margin-top: 20px;">
+    Apasionado por la tecnología y el desarrollo de software, con experiencia en la creación de aplicaciones orientadas a resolver necesidades prácticas del consultorio y de la vida cotidiana.
+  </p>
+
+</div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="kicker">Acceso rápido</div>
+        <h3>Elegí el área que querés visitar</h3>
+        <p class="muted">
+          La medicina es el eje principal de este sitio. La sección de informática reúne mis apps
+          y proyectos publicados a lo largo del tiempo.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="medicina.html">Ingresar al área médica</a>
+          <a class="btn btn-primary" href="apps.html">Ingresar a informática</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section-lg">
+    <div class="container">
+      <div class="kicker">Seleccione un camino</div>
+      <h2>Dos áreas diferentes, con prioridades claras</h2>
+      <div class="grid-2">
+        <article class="card">
+          <div class="kicker">Principal</div>
+          <h3 style="font-size:1.7rem">Área médica</h3>
+          <p class="muted">
+            Información profesional, formación, consultorio, horarios de atención
+            y presentación médica institucional.
+          </p>
+          <a class="btn btn-primary" href="medicina.html">Ver perfil médico</a>
+        </article>
+
+        <article class="card">
+          <div class="kicker">Secundario</div>
+          <h3 style="font-size:1.7rem">Informática y proyectos</h3>
+          <p class="muted">
+            Aplicaciones, trayectoria en desarrollo de software y proyectos creados
+            para resolver necesidades reales del día a día.
+          </p>
+          <a class="btn btn-primary" href="apps.html">Ver informática</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-lg">
+    <div class="container">
+      <div class="quote">
+        La medicina constituye mi actividad profesional principal. La informática ocupa un lugar complementario,
+        como espacio de creación, experimentación y desarrollo de herramientas útiles.
+      </div>
+    </div>
+  </section>
+</main>
+
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-line"></div>
+      <div class="grid-2">
+        <div>
+          <strong>Dr. Víctor Oviedo</strong><br>
+          <span class="muted">Ginecología, obstetricia, innovación y desarrollo de soluciones digitales.</span>
+        </div>
+        <div class="muted">
+   
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
