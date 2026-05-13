@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>EndoDEX - Account Deletion</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+<div class="max-w-4xl mx-auto px-6 py-10">
+
+  <!-- HEADER -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-10">
+
+    <div>
+      <h1 class="text-4xl font-bold">EndoDEX</h1>
+      <p id="subtitle" class="text-gray-500 mt-2"></p>
+    </div>
+
+    <div>
+      <select
+              id="languageSelector"
+              class="border rounded-xl px-4 py-2 bg-white shadow-sm"
+      >
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="pt">Português</option>
+        <option value="fr">Français</option>
+        <option value="it">Italiano</option>
+        <option value="de">Deutsch</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- CONTENT -->
+  <div class="space-y-10">
+
+    <div>
+      <p id="intro" class="text-lg leading-relaxed"></p>
+    </div>
+
+    <div>
+      <h2 id="howTitle" class="text-2xl font-bold mb-4"></h2>
+
+      <ol
+              id="howSteps"
+              class="list-decimal pl-6 space-y-2 text-lg"
+      ></ol>
+    </div>
+
+    <div>
+      <h2 id="deletedTitle" class="text-2xl font-bold mb-4"></h2>
+
+      <ul
+              id="deletedItems"
+              class="list-disc pl-6 space-y-2 text-lg"
+      ></ul>
+    </div>
+
+    <div>
+      <h2 id="externalTitle" class="text-2xl font-bold mb-4"></h2>
+
+      <p id="externalText" class="text-lg leading-relaxed"></p>
+    </div>
+
+    <div class="bg-gray-50 border rounded-3xl p-6">
+      <h2 id="supportTitle" class="text-2xl font-bold mb-4"></h2>
+
+      <p class="text-lg">
+        <span id="supportText"></span>
+        <a
+                href="mailto:endodex@dr-dex.net"
+                class="text-blue-600 font-semibold"
+        >
+          endodex@dr-dex.net
+        </a>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="border-t mt-14 pt-6 text-sm text-gray-400">
+    © 2026 EndoDEX · DexterSoft
+  </div>
+
+</div>
+
+<script>
+  const translations = {
+    en: {
+      subtitle: "Account and Data Deletion",
+
+      intro:
+              "Users can permanently delete their EndoDEX account and associated cloud data directly inside the application.",
+
+      howTitle: "How to delete your account",
+
+      howSteps: [
+        "Open EndoDEX",
+        "Open the side menu",
+        "Select “Delete account”",
+        "Confirm deletion"
+      ],
+
+      deletedTitle: "Data deleted",
+
+      deletedItems: [
+        "User profile",
+        "Saved clinical cases",
+        "Cloud synchronized data",
+        "Authentication credentials associated with EndoDEX"
+      ],
+
+      externalTitle: "Data not controlled by EndoDEX",
+
+      externalText:
+              "Purchase and billing records may remain stored by Google Play, Apple App Store, or payment providers according to their legal and financial retention policies.",
+
+      supportTitle: "Support",
+
+      supportText: "Contact: "
+    },
+
+    es: {
+      subtitle: "Eliminación de cuenta y datos",
+
+      intro:
+              "Los usuarios pueden eliminar permanentemente su cuenta de EndoDEX y los datos asociados en la nube directamente desde la aplicación.",
+
+      howTitle: "Cómo eliminar la cuenta",
+
+      howSteps: [
+        "Abrir EndoDEX",
+        "Abrir el menú lateral",
+        "Seleccionar “Eliminar cuenta”",
+        "Confirmar la eliminación"
+      ],
+
+      deletedTitle: "Datos eliminados",
+
+      deletedItems: [
+        "Perfil de usuario",
+        "Casos clínicos guardados",
+        "Datos sincronizados en la nube",
+        "Credenciales asociadas a EndoDEX"
+      ],
+
+      externalTitle: "Datos no controlados por EndoDEX",
+
+      externalText:
+              "Los registros de compras y facturación pueden permanecer almacenados por Google Play, Apple App Store o proveedores de pago según sus políticas legales y fiscales.",
+
+      supportTitle: "Soporte",
+
+      supportText: "Contacto: "
+    },
+
+    pt: {
+      subtitle: "Exclusão de conta e dados",
+
+      intro:
+              "Os usuários podem excluir permanentemente sua conta EndoDEX e os dados associados na nuvem diretamente no aplicativo.",
+
+      howTitle: "Como excluir sua conta",
+
+      howSteps: [
+        "Abrir o EndoDEX",
+        "Abrir o menu lateral",
+        "Selecionar “Excluir conta”",
+        "Confirmar a exclusão"
+      ],
+
+      deletedTitle: "Dados excluídos",
+
+      deletedItems: [
+        "Perfil do usuário",
+        "Casos clínicos salvos",
+        "Dados sincronizados na nuvem",
+        "Credenciais associadas ao EndoDEX"
+      ],
+
+      externalTitle: "Dados não controlados pelo EndoDEX",
+
+      externalText:
+              "Registros de compras e faturamento podem permanecer armazenados pelo Google Play, Apple App Store ou provedores de pagamento conforme suas políticas legais e fiscais.",
+
+      supportTitle: "Suporte",
+
+      supportText: "Contato: "
+    },
+
+    fr: {
+      subtitle: "Suppression du compte et des données",
+
+      intro:
+              "Les utilisateurs peuvent supprimer définitivement leur compte EndoDEX et les données associées dans le cloud directement depuis l’application.",
+
+      howTitle: "Comment supprimer votre compte",
+
+      howSteps: [
+        "Ouvrir EndoDEX",
+        "Ouvrir le menu latéral",
+        "Sélectionner « Supprimer le compte »",
+        "Confirmer la suppression"
+      ],
+
+      deletedTitle: "Données supprimées",
+
+      deletedItems: [
+        "Profil utilisateur",
+        "Cas cliniques enregistrés",
+        "Données synchronisées dans le cloud",
+        "Identifiants associés à EndoDEX"
+      ],
+
+      externalTitle: "Données non contrôlées par EndoDEX",
+
+      externalText:
+              "Les informations d’achat et de facturation peuvent rester stockées par Google Play, Apple App Store ou les fournisseurs de paiement conformément à leurs politiques légales et fiscales.",
+
+      supportTitle: "Support",
+
+      supportText: "Contact : "
+    },
+
+    it: {
+      subtitle: "Eliminazione account e dati",
+
+      intro:
+              "Gli utenti possono eliminare definitivamente il proprio account EndoDEX e i dati associati nel cloud direttamente dall’applicazione.",
+
+      howTitle: "Come eliminare il proprio account",
+
+      howSteps: [
+        "Aprire EndoDEX",
+        "Aprire il menu laterale",
+        "Selezionare “Elimina account”",
+        "Confermare l’eliminazione"
+      ],
+
+      deletedTitle: "Dati eliminati",
+
+      deletedItems: [
+        "Profilo utente",
+        "Casi clinici salvati",
+        "Dati sincronizzati nel cloud",
+        "Credenziali associate a EndoDEX"
+      ],
+
+      externalTitle: "Dati non controllati da EndoDEX",
+
+      externalText:
+              "Le informazioni relative agli acquisti e alla fatturazione possono rimanere archiviate da Google Play, Apple App Store o fornitori di pagamento secondo le rispettive politiche legali e fiscali.",
+
+      supportTitle: "Supporto",
+
+      supportText: "Contatto: "
+    },
+
+    de: {
+      subtitle: "Konto- und Datenlöschung",
+
+      intro:
+              "Benutzer können ihr EndoDEX-Konto und die zugehörigen Cloud-Daten direkt in der Anwendung dauerhaft löschen.",
+
+      howTitle: "So löschen Sie Ihr Konto",
+
+      howSteps: [
+        "EndoDEX öffnen",
+        "Seitenmenü öffnen",
+        "„Konto löschen“ auswählen",
+        "Löschung bestätigen"
+      ],
+
+      deletedTitle: "Gelöschte Daten",
+
+      deletedItems: [
+        "Benutzerprofil",
+        "Gespeicherte klinische Fälle",
+        "Cloud-synchronisierte Daten",
+        "Mit EndoDEX verknüpfte Authentifizierungsdaten"
+      ],
+
+      externalTitle: "Nicht von EndoDEX kontrollierte Daten",
+
+      externalText:
+              "Kauf- und Abrechnungsdaten können gemäß den gesetzlichen und steuerlichen Aufbewahrungsrichtlinien weiterhin bei Google Play, Apple App Store oder Zahlungsanbietern gespeichert bleiben.",
+
+      supportTitle: "Support",
+
+      supportText: "Kontakt: "
+    }
+  };
+
+  function applyLanguage(lang) {
+    const t = translations[lang] || translations.en;
+
+    document.documentElement.lang = lang;
+
+    document.getElementById("subtitle").textContent = t.subtitle;
+    document.getElementById("intro").textContent = t.intro;
+
+    document.getElementById("howTitle").textContent = t.howTitle;
+
+    const howSteps = document.getElementById("howSteps");
+    howSteps.innerHTML = "";
+
+    t.howSteps.forEach(step => {
+      const li = document.createElement("li");
+      li.textContent = step;
+      howSteps.appendChild(li);
+    });
+
+    document.getElementById("deletedTitle").textContent = t.deletedTitle;
+
+    const deletedItems = document.getElementById("deletedItems");
+    deletedItems.innerHTML = "";
+
+    t.deletedItems.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      deletedItems.appendChild(li);
+    });
+
+    document.getElementById("externalTitle").textContent = t.externalTitle;
+    document.getElementById("externalText").textContent = t.externalText;
+
+    document.getElementById("supportTitle").textContent = t.supportTitle;
+    document.getElementById("supportText").textContent = t.supportText;
+
+    document.getElementById("languageSelector").value = lang;
+  }
+
+  const browserLang = navigator.language.slice(0, 2);
+
+  const supported = ["en", "es", "pt", "fr", "it", "de"];
+
+  const initialLang = supported.includes(browserLang)
+          ? browserLang
+          : "en";
+
+  applyLanguage(initialLang);
+
+  document
+          .getElementById("languageSelector")
+          .addEventListener("change", (e) => {
+            applyLanguage(e.target.value);
+          });
+</script>
+
+</body>
+</html>
