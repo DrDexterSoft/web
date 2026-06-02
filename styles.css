@@ -72,7 +72,12 @@ h3{font-size:1.15rem;margin:0 0 10px}
 .stat-grid,.grid-2,.grid-3,.grid-4{display:grid;gap:18px}
 .stat-grid{grid-template-columns:repeat(2,1fr);margin-top:18px}
 .grid-2{grid-template-columns:repeat(2,1fr)}
-.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-3{
+  display:grid;
+  gap:18px;
+  grid-template-columns:repeat(3,1fr);
+  align-items:stretch;
+}
 .grid-4{grid-template-columns:repeat(4,1fr)}
 .stat,.card{padding:22px}
 .stat-number{font-size:1.9rem;font-weight:900;color:var(--primary)}
@@ -134,8 +139,11 @@ h3{font-size:1.15rem;margin:0 0 10px}
 }
 
 .app-card .cta-row{
-  margin-top:0;
-  padding-top:0;
+  margin-top:auto;
+  padding-top:24px;
+  display:flex;
+  flex-direction:column;
+  width:100%;
 }
 
 .app-card-icon{
@@ -175,11 +183,14 @@ h3{font-size:1.15rem;margin:0 0 10px}
 
 .app-card-visual{
   width:100%;
-  margin-top:auto;
-  padding-top:24px;
+  padding-top:0;
 }
 
 .app-card-pills{
   justify-content:center;
   margin-bottom:18px;
+}
+
+.card.app-card{
+  height:100%;
 }
