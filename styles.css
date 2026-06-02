@@ -127,21 +127,22 @@ h3{font-size:1.15rem;margin:0 0 10px}
   .stat-grid{grid-template-columns:1fr}
 }
 .store-buttons{
-  display: flex;
-  gap: 16px;
-  align-items: center;
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  margin-top:16px;
 }
 
-.store-buttons a,
-.store-buttons button{
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+.store-buttons a{
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .store-buttons img{
-  height: 55px;   /* ← MISMA ALTURA */
-  width: auto;    /* ← mantiene proporción */
-  display: block;
+  height:55px;
+  width:auto;
+  display:block;
 }
