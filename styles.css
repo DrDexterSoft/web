@@ -126,6 +126,32 @@ h3{font-size:1.15rem;margin:0 0 10px}
   .hero{padding-top:48px}
   .stat-grid{grid-template-columns:1fr}
 }
+
+.app-card{
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+
+.app-card .cta-row{
+  margin-top:auto;
+  padding-top:24px;
+}
+
+.app-card-icon{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:260px;
+}
+
+.app-card-icon img{
+  max-height:230px;
+  width:auto;
+  object-fit:contain;
+}
+
 .store-buttons{
   display:flex;
   gap:16px;
