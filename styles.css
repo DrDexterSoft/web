@@ -134,8 +134,8 @@ h3{font-size:1.15rem;margin:0 0 10px}
 }
 
 .app-card .cta-row{
-  margin-top:auto;
-  padding-top:24px;
+  margin-top:0;
+  padding-top:0;
 }
 
 .app-card-icon{
@@ -171,4 +171,15 @@ h3{font-size:1.15rem;margin:0 0 10px}
   height:55px;
   width:auto;
   display:block;
+}
+
+.app-card-visual{
+  width:100%;
+  margin-top:auto;
+  padding-top:24px;
+}
+
+.app-card-pills{
+  justify-content:center;
+  margin-bottom:18px;
 }
