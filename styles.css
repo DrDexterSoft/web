@@ -175,10 +175,11 @@ h3{font-size:1.15rem;margin:0 0 10px}
   justify-content:center;
 }
 
-.store-buttons img{
+.store-buttons img,
+.web-badge{
   height:55px;
-  width:auto;
-  display:block;
+  width:210px;
+  display:flex;
 }
 
 .app-card-visual{
@@ -196,30 +197,29 @@ h3{font-size:1.15rem;margin:0 0 10px}
 }
 
 .web-badge{
+  width:210px;
   height:55px;
-  min-width:210px;
-  padding:0 18px;
+
   display:flex;
   align-items:center;
   justify-content:center;
   gap:10px;
-  border-radius:7px;
-  background:#111;
+
+  background:#000;
   color:#fff;
+
+  border:1px solid #a6a6a6;
+  border-radius:8px;
+
+  box-sizing:border-box;
+
   font-weight:700;
   line-height:1.05;
   text-decoration:none;
   white-space:nowrap;
 }
 
-.web-badge small{
-  display:block;
-  font-size:.62rem;
-  font-weight:700;
-  letter-spacing:.08em;
-  opacity:.85;
-}
-
 .web-badge-icon{
-  font-size:1.45rem;
+  font-size:1.5rem;
+  opacity:.9;
 }
