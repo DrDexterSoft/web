@@ -197,13 +197,29 @@ h3{font-size:1.15rem;margin:0 0 10px}
 
 .web-badge{
   height:55px;
-  padding:0 20px;
+  min-width:210px;
+  padding:0 18px;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:8px;
-  background:#0f4c81;
-  color:white;
+  gap:10px;
+  border-radius:7px;
+  background:#111;
+  color:#fff;
   font-weight:700;
+  line-height:1.05;
   text-decoration:none;
+  white-space:nowrap;
+}
+
+.web-badge small{
+  display:block;
+  font-size:.62rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  opacity:.85;
+}
+
+.web-badge-icon{
+  font-size:1.45rem;
 }
