@@ -137,7 +137,7 @@
     <li><strong>Cuenta de Google (solo Android, si activa la copia):</strong> para elegir en qué Drive guardarla.</li>
   </ul>
 
-  <h2>8. Cómo borrar sus datos</h2>
+  <h2 data-seccion="borrar-datos">8. Cómo borrar sus datos</h2>
   <ul>
     <li><strong>En el teléfono:</strong> desinstale la app o borre sus datos desde los ajustes del teléfono.</li>
     <li><strong>En Google Drive:</strong> borre el archivo <code>Quirurdex-respaldo.json</code>. Para quitarle el acceso a la app, entre a <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
@@ -208,7 +208,7 @@
     <li><strong>Google account (Android only, if you turn on backup):</strong> to choose which Drive to save it in.</li>
   </ul>
 
-  <h2>8. How to delete your data</h2>
+  <h2 data-seccion="borrar-datos">8. How to delete your data</h2>
   <ul>
     <li><strong>On the phone:</strong> uninstall the app or clear its data from the phone settings.</li>
     <li><strong>In Google Drive:</strong> delete the file <code>Quirurdex-respaldo.json</code>. To remove the app's access, go to <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
@@ -279,7 +279,7 @@
     <li><strong>Conta do Google (apenas Android, se ativar o backup):</strong> para escolher em qual Drive salvá-lo.</li>
   </ul>
 
-  <h2>8. Como apagar seus dados</h2>
+  <h2 data-seccion="borrar-datos">8. Como apagar seus dados</h2>
   <ul>
     <li><strong>No celular:</strong> desinstale o app ou apague os dados dele nas configurações do celular.</li>
     <li><strong>No Google Drive:</strong> apague o arquivo <code>Quirurdex-respaldo.json</code>. Para remover o acesso do app, acesse <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
@@ -347,6 +347,12 @@
   });
 
   mostrar(idiomaInicial(), false);
+
+  // #borrar-datos lleva a la sección de borrado del idioma que se muestra.
+  if (location.hash === '#borrar-datos') {
+    var destino = document.querySelector('[data-idioma].visible [data-seccion="borrar-datos"]');
+    if (destino) destino.scrollIntoView();
+  }
 })();
 </script>
 <noscript><style>[data-idioma="es"] { display: block; }</style></noscript>
