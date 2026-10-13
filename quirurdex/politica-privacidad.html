@@ -1,1 +1,354 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quirurdex — Política de privacidad</title>
+<meta name="description" content="Política de privacidad de la app Quirurdex / Quirurdex privacy policy / Política de privacidade do Quirurdex">
+<style>
+  :root {
+    --azul: #0060A8;
+    --celeste: #4799E8;
+    --fondo: #F8FBFF;
+    --texto: #1B2733;
+    --suave: #5A6B7B;
+    --caja: #EFF6FD;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  header {
+    background: var(--azul);
+    color: #fff;
+    padding: 20px 16px;
+  }
+  .barra {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .marca { font-size: 22px; font-weight: 600; letter-spacing: .2px; }
+  .idiomas { display: flex; gap: 6px; }
+  .idiomas button {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,.6);
+    border-radius: 10px;
+    padding: 6px 12px;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .idiomas button[aria-pressed="true"] { background: #fff; color: var(--azul); border-color: #fff; }
+  main { max-width: 820px; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { color: var(--azul); font-size: 28px; line-height: 1.25; margin: 8px 0 4px; }
+  h2 { color: var(--azul); font-size: 19px; margin: 32px 0 8px; }
+  .fecha { color: var(--suave); font-size: 14px; margin: 0 0 20px; }
+  .resumen {
+    background: var(--caja);
+    border: 1.6px solid var(--celeste);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+  .resumen ul { margin: 6px 0 0; padding-left: 20px; }
+  a { color: var(--azul); }
+  footer { color: var(--suave); font-size: 14px; text-align: center; padding: 0 16px 32px; }
+  @media (max-width: 520px) {
+    .barra { flex-direction: column; align-items: flex-start; }
+    .idiomas button { padding: 5px 10px; font-size: 13px; }
+    h1 { font-size: 24px; }
+  }
+  [data-idioma] { display: none; }
+  [data-idioma].visible { display: block; }
+</style>
+</head>
+<body>
+<header>
+  <div class="barra">
+    <div class="marca">Quirurdex</div>
+    <div class="idiomas" role="group" aria-label="Idioma / Language / Idioma">
+      <button type="button" data-elegir="es" aria-pressed="false">Español</button>
+      <button type="button" data-elegir="en" aria-pressed="false">English</button>
+      <button type="button" data-elegir="pt" aria-pressed="false">Português</button>
+    </div>
+  </div>
+</header>
 
+<main>
+
+<!-- ===================== ESPAÑOL ===================== -->
+<article data-idioma="es" lang="es">
+  <h1>Política de privacidad</h1>
+  <p class="fecha">Vigente desde el 13 de octubre de 2026</p>
+
+  <div class="resumen">
+    <strong>En pocas palabras</strong>
+    <ul>
+      <li>Quirurdex guarda sus registros solo en su teléfono.</li>
+      <li>No tiene cuentas de usuario, servidores propios, publicidad ni rastreo.</li>
+      <li>Si usted lo activa, guarda una copia en <strong>su propio</strong> Google Drive o iCloud. Nosotros nunca vemos esa copia.</li>
+      <li>Nunca vendemos ni compartimos datos con nadie.</li>
+    </ul>
+  </div>
+
+  <h2>1. Quiénes somos</h2>
+  <p>Quirurdex es una aplicación desarrollada por el Dr. Victor Oviedo (DexterLabs), Paraguay. Sirve para que profesionales de la salud lleven un registro mensual de sus cirugías y procedimientos y generen la hoja para presentar a seguros y prepagas. Contacto: <a href="mailto:support@dextorsuite.com">support@dextorsuite.com</a>.</p>
+
+  <h2>2. Qué datos maneja la app</h2>
+  <p>Solo los que usted escribe en ella:</p>
+  <ul>
+    <li>Datos de cada registro: nombre del paciente, cédula de identidad, seguro o prepaga, número de asegurado o de cobertura, fecha, procedimiento o cirugía, rol, cirujano y lugar o sanatorio, según la especialidad elegida.</li>
+    <li>Su nombre como médico, que aparece en la hoja impresa.</li>
+    <li>Las listas de sugerencias que la app aprende (seguros, procedimientos, cirujanos y lugares).</li>
+    <li>Los correos que usted escribe para enviar el PDF exportado, que se recuerdan solo en el teléfono.</li>
+  </ul>
+  <p>La app no recopila datos de uso, ubicación, contactos, fotos ni identificadores publicitarios, y no incluye herramientas de analítica ni de publicidad.</p>
+
+  <h2>3. Dónde se guardan</h2>
+  <p>Todo se guarda en el almacenamiento interno de su teléfono. Nosotros no tenemos servidores que reciban sus datos y no podemos verlos.</p>
+  <p>En Android, el sistema puede incluir los datos de las aplicaciones en la copia de seguridad del dispositivo que Google hace en su cuenta, si usted tiene esa función activada en los ajustes del teléfono. Esa copia la gestiona Google según su configuración.</p>
+
+  <h2>4. Copia de seguridad en Google Drive o iCloud (opcional)</h2>
+  <p>Si usted la activa, la app guarda una copia de sus registros en un archivo llamado <code>Quirurdex-respaldo.json</code>:</p>
+  <ul>
+    <li><strong>Android, Google Drive:</strong> el archivo queda en «Mi unidad» de la cuenta de Google que usted elija. La app solo pide el permiso <code>drive.file</code>, que le deja ver y modificar únicamente los archivos que ella misma creó. No puede ver el resto de su Drive.</li>
+    <li><strong>iPhone, iCloud:</strong> el archivo queda en la carpeta de Quirurdex de su iCloud Drive.</li>
+  </ul>
+  <p>La copia se transmite directamente entre su teléfono y Google o Apple, de forma cifrada (HTTPS). Nosotros no la recibimos. El archivo en sí no está protegido con contraseña, por lo que su seguridad depende de la de su cuenta de Google o Apple. Le recomendamos usar una contraseña segura y la verificación en dos pasos.</p>
+  <p>El uso y la transferencia a cualquier otra aplicación de la información recibida de las API de Google se ajustarán a la <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Política de Datos del Usuario de los Servicios de las API de Google</a>, incluidos los requisitos de Uso Limitado. La app usa el acceso a Google Drive únicamente para guardar y restaurar su copia de seguridad.</p>
+
+  <h2>5. Exportar e imprimir</h2>
+  <p>Cuando usted exporta la hoja del mes, el PDF se guarda en su teléfono (Descargas en Android, Archivos en iPhone). Si elige enviarlo por correo, la app abre su propia aplicación de correo con el archivo adjunto y el envío sale desde su cuenta. Nosotros no recibimos esos correos. Al imprimir o compartir, el PDF va a la impresora o a la aplicación que usted elija.</p>
+
+  <h2>6. Datos de pacientes y su responsabilidad</h2>
+  <p>Los datos de sus pacientes son información de salud protegida por el secreto profesional y por las leyes de protección de datos aplicables. Usted, como profesional, es el responsable de esos datos. Quirurdex le da las herramientas para guardarlos solo en sus dispositivos y en sus propias cuentas. Le recomendamos proteger el teléfono con bloqueo de pantalla y compartir los PDF solo con quien corresponda.</p>
+
+  <h2>7. Permisos que usa la app</h2>
+  <ul>
+    <li><strong>Internet y estado de la conexión:</strong> para subir la copia a Google Drive y reintentarla cuando vuelve la señal.</li>
+    <li><strong>Cuenta de Google (solo Android, si activa la copia):</strong> para elegir en qué Drive guardarla.</li>
+  </ul>
+
+  <h2>8. Cómo borrar sus datos</h2>
+  <ul>
+    <li><strong>En el teléfono:</strong> desinstale la app o borre sus datos desde los ajustes del teléfono.</li>
+    <li><strong>En Google Drive:</strong> borre el archivo <code>Quirurdex-respaldo.json</code>. Para quitarle el acceso a la app, entre a <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
+    <li><strong>En iCloud:</strong> Ajustes &gt; su nombre &gt; iCloud &gt; Administrar almacenamiento &gt; Quirurdex.</li>
+  </ul>
+  <p>Como no guardamos sus datos en ningún servidor, no hay nada que debamos borrar de nuestro lado.</p>
+
+  <h2>9. Menores de edad</h2>
+  <p>Quirurdex está dirigida a profesionales de la salud y no está pensada para menores de edad.</p>
+
+  <h2>10. Cambios en esta política</h2>
+  <p>Si cambiamos esta política, publicaremos la nueva versión en esta página con su fecha de vigencia. Si un cambio afecta de forma importante cómo se manejan sus datos, lo avisaremos también en la app.</p>
+
+  <h2>11. Contacto</h2>
+  <p>Para cualquier consulta sobre privacidad, escríbanos a <a href="mailto:support@dextorsuite.com">support@dextorsuite.com</a>.</p>
+</article>
+
+<!-- ===================== ENGLISH ===================== -->
+<article data-idioma="en" lang="en">
+  <h1>Privacy Policy</h1>
+  <p class="fecha">Effective October 13, 2026</p>
+
+  <div class="resumen">
+    <strong>In short</strong>
+    <ul>
+      <li>Quirurdex stores your records only on your phone.</li>
+      <li>It has no user accounts, no servers of our own, no ads and no tracking.</li>
+      <li>If you turn it on, it keeps a backup in <strong>your own</strong> Google Drive or iCloud. We never see that backup.</li>
+      <li>We never sell or share data with anyone.</li>
+    </ul>
+  </div>
+
+  <h2>1. Who we are</h2>
+  <p>Quirurdex is an app developed by Dr. Victor Oviedo (DexterLabs), Paraguay. It helps healthcare professionals keep a monthly log of their surgeries and procedures and produce the sheet they submit to insurers and health plans. Contact: <a href="mailto:support@dextorsuite.com">support@dextorsuite.com</a>.</p>
+
+  <h2>2. What data the app handles</h2>
+  <p>Only what you type into it:</p>
+  <ul>
+    <li>Record details: patient name, ID number, insurer or health plan, member or coverage number, date, procedure or surgery, role, surgeon and place or hospital, depending on the specialty you choose.</li>
+    <li>Your name as a physician, shown on the printed sheet.</li>
+    <li>The suggestion lists the app learns (insurers, procedures, surgeons and places).</li>
+    <li>The email addresses you enter to send the exported PDF, remembered only on the phone.</li>
+  </ul>
+  <p>The app does not collect usage data, location, contacts, photos or advertising identifiers, and it includes no analytics or advertising tools.</p>
+
+  <h2>3. Where it is stored</h2>
+  <p>Everything is stored in your phone's internal storage. We have no servers that receive your data, and we cannot see it.</p>
+  <p>On Android, the system may include app data in the device backup that Google keeps in your account, if you have that feature turned on in your phone settings. Google manages that backup according to your settings.</p>
+
+  <h2>4. Backup to Google Drive or iCloud (optional)</h2>
+  <p>If you turn it on, the app saves a copy of your records in a file named <code>Quirurdex-respaldo.json</code>:</p>
+  <ul>
+    <li><strong>Android, Google Drive:</strong> the file is saved in "My Drive" of the Google account you choose. The app only requests the <code>drive.file</code> permission, which lets it see and change only the files it created itself. It cannot see the rest of your Drive.</li>
+    <li><strong>iPhone, iCloud:</strong> the file is saved in the Quirurdex folder of your iCloud Drive.</li>
+  </ul>
+  <p>The backup travels directly between your phone and Google or Apple, encrypted (HTTPS). We never receive it. The file itself is not password-protected, so its security depends on your Google or Apple account. We recommend a strong password and two-step verification.</p>
+  <p>Quirurdex's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements. The app uses Google Drive access only to save and restore your backup.</p>
+
+  <h2>5. Exporting and printing</h2>
+  <p>When you export the monthly sheet, the PDF is saved on your phone (Downloads on Android, Files on iPhone). If you choose to email it, the app opens your own mail app with the file attached, and it is sent from your account. We never receive those emails. When you print or share, the PDF goes to the printer or app you choose.</p>
+
+  <h2>6. Patient data and your responsibility</h2>
+  <p>Your patients' data is health information protected by professional confidentiality and by applicable data protection laws. As the professional, you are responsible for that data. Quirurdex gives you the tools to keep it only on your devices and in your own accounts. We recommend protecting your phone with a screen lock and sharing PDFs only with the appropriate recipients.</p>
+
+  <h2>7. Permissions the app uses</h2>
+  <ul>
+    <li><strong>Internet and network state:</strong> to upload the backup to Google Drive and retry when the connection comes back.</li>
+    <li><strong>Google account (Android only, if you turn on backup):</strong> to choose which Drive to save it in.</li>
+  </ul>
+
+  <h2>8. How to delete your data</h2>
+  <ul>
+    <li><strong>On the phone:</strong> uninstall the app or clear its data from the phone settings.</li>
+    <li><strong>In Google Drive:</strong> delete the file <code>Quirurdex-respaldo.json</code>. To remove the app's access, go to <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
+    <li><strong>In iCloud:</strong> Settings &gt; your name &gt; iCloud &gt; Manage Storage &gt; Quirurdex.</li>
+  </ul>
+  <p>Since we do not keep your data on any server, there is nothing for us to delete on our side.</p>
+
+  <h2>9. Children</h2>
+  <p>Quirurdex is intended for healthcare professionals and is not meant for children.</p>
+
+  <h2>10. Changes to this policy</h2>
+  <p>If we change this policy, we will post the new version on this page with its effective date. If a change significantly affects how your data is handled, we will also announce it in the app.</p>
+
+  <h2>11. Contact</h2>
+  <p>For any privacy question, write to us at <a href="mailto:support@dextorsuite.com">support@dextorsuite.com</a>.</p>
+</article>
+
+<!-- ===================== PORTUGUÊS ===================== -->
+<article data-idioma="pt" lang="pt">
+  <h1>Política de privacidade</h1>
+  <p class="fecha">Em vigor desde 13 de outubro de 2026</p>
+
+  <div class="resumen">
+    <strong>Em poucas palavras</strong>
+    <ul>
+      <li>O Quirurdex guarda seus registros apenas no seu celular.</li>
+      <li>Não tem contas de usuário, servidores próprios, publicidade nem rastreamento.</li>
+      <li>Se você ativar, ele guarda uma cópia no <strong>seu próprio</strong> Google Drive ou iCloud. Nós nunca vemos essa cópia.</li>
+      <li>Nunca vendemos nem compartilhamos dados com ninguém.</li>
+    </ul>
+  </div>
+
+  <h2>1. Quem somos</h2>
+  <p>O Quirurdex é um aplicativo desenvolvido pelo Dr. Victor Oviedo (DexterLabs), Paraguai. Ele ajuda profissionais de saúde a manter um registro mensal de suas cirurgias e procedimentos e a gerar a folha para apresentar a seguros e planos de saúde. Contato: <a href="mailto:support@dextorsuite.com">support@dextorsuite.com</a>.</p>
+
+  <h2>2. Quais dados o app utiliza</h2>
+  <p>Apenas os que você digita nele:</p>
+  <ul>
+    <li>Dados de cada registro: nome do paciente, documento de identidade, seguro ou plano de saúde, número de associado ou de cobertura, data, procedimento ou cirurgia, função, cirurgião e local ou hospital, conforme a especialidade escolhida.</li>
+    <li>Seu nome como médico, que aparece na folha impressa.</li>
+    <li>As listas de sugestões que o app aprende (seguros, procedimentos, cirurgiões e locais).</li>
+    <li>Os e-mails que você digita para enviar o PDF exportado, lembrados apenas no celular.</li>
+  </ul>
+  <p>O app não coleta dados de uso, localização, contatos, fotos nem identificadores de publicidade, e não inclui ferramentas de análise nem de publicidade.</p>
+
+  <h2>3. Onde são guardados</h2>
+  <p>Tudo é guardado no armazenamento interno do seu celular. Não temos servidores que recebam seus dados e não podemos vê-los.</p>
+  <p>No Android, o sistema pode incluir os dados dos aplicativos no backup do dispositivo que o Google mantém na sua conta, se você tiver esse recurso ativado nas configurações do celular. Esse backup é gerenciado pelo Google conforme suas configurações.</p>
+
+  <h2>4. Backup no Google Drive ou iCloud (opcional)</h2>
+  <p>Se você ativar, o app salva uma cópia dos seus registros em um arquivo chamado <code>Quirurdex-respaldo.json</code>:</p>
+  <ul>
+    <li><strong>Android, Google Drive:</strong> o arquivo fica em "Meu Drive" da conta do Google que você escolher. O app solicita apenas a permissão <code>drive.file</code>, que permite ver e alterar somente os arquivos que ele mesmo criou. Ele não pode ver o restante do seu Drive.</li>
+    <li><strong>iPhone, iCloud:</strong> o arquivo fica na pasta do Quirurdex no seu iCloud Drive.</li>
+  </ul>
+  <p>A cópia é transmitida diretamente entre seu celular e o Google ou a Apple, de forma criptografada (HTTPS). Nós não a recebemos. O arquivo em si não é protegido por senha, por isso sua segurança depende da sua conta do Google ou da Apple. Recomendamos usar uma senha forte e a verificação em duas etapas.</p>
+  <p>O uso e a transferência para qualquer outro aplicativo de informações recebidas das APIs do Google seguirão a <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Política de Dados do Usuário dos Serviços de API do Google</a>, incluindo os requisitos de Uso Limitado. O app usa o acesso ao Google Drive apenas para salvar e restaurar seu backup.</p>
+
+  <h2>5. Exportar e imprimir</h2>
+  <p>Quando você exporta a folha do mês, o PDF é salvo no seu celular (Downloads no Android, Arquivos no iPhone). Se você escolher enviá-lo por e-mail, o app abre seu próprio aplicativo de e-mail com o arquivo anexado, e o envio sai da sua conta. Nós não recebemos esses e-mails. Ao imprimir ou compartilhar, o PDF vai para a impressora ou o aplicativo que você escolher.</p>
+
+  <h2>6. Dados de pacientes e sua responsabilidade</h2>
+  <p>Os dados dos seus pacientes são informações de saúde protegidas pelo sigilo profissional e pelas leis de proteção de dados aplicáveis. Você, como profissional, é o responsável por esses dados. O Quirurdex oferece as ferramentas para guardá-los apenas nos seus dispositivos e nas suas próprias contas. Recomendamos proteger o celular com bloqueio de tela e compartilhar os PDFs apenas com quem for necessário.</p>
+
+  <h2>7. Permissões que o app usa</h2>
+  <ul>
+    <li><strong>Internet e estado da conexão:</strong> para enviar o backup ao Google Drive e tentar novamente quando a conexão voltar.</li>
+    <li><strong>Conta do Google (apenas Android, se ativar o backup):</strong> para escolher em qual Drive salvá-lo.</li>
+  </ul>
+
+  <h2>8. Como apagar seus dados</h2>
+  <ul>
+    <li><strong>No celular:</strong> desinstale o app ou apague os dados dele nas configurações do celular.</li>
+    <li><strong>No Google Drive:</strong> apague o arquivo <code>Quirurdex-respaldo.json</code>. Para remover o acesso do app, acesse <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">myaccount.google.com/permissions</a>.</li>
+    <li><strong>No iCloud:</strong> Ajustes &gt; seu nome &gt; iCloud &gt; Gerenciar armazenamento &gt; Quirurdex.</li>
+  </ul>
+  <p>Como não guardamos seus dados em nenhum servidor, não há nada para apagarmos do nosso lado.</p>
+
+  <h2>9. Menores de idade</h2>
+  <p>O Quirurdex é destinado a profissionais de saúde e não é pensado para menores de idade.</p>
+
+  <h2>10. Alterações nesta política</h2>
+  <p>Se alterarmos esta política, publicaremos a nova versão nesta página com a data de vigência. Se uma alteração afetar de forma importante o tratamento dos seus dados, também avisaremos no app.</p>
+
+  <h2>11. Contato</h2>
+  <p>Para qualquer dúvida sobre privacidade, escreva para <a href="mailto:support@dextorsuite.com">support@dextorsuite.com</a>.</p>
+</article>
+
+</main>
+
+<footer>© 2026 DexterLabs · Quirurdex</footer>
+
+<script>
+(function () {
+  var soportados = ['es', 'en', 'pt'];
+  var titulos = {
+    es: 'Quirurdex — Política de privacidad',
+    en: 'Quirurdex — Privacy Policy',
+    pt: 'Quirurdex — Política de privacidade'
+  };
+
+  function guardado() {
+    try { return localStorage.getItem('quirurdex-idioma'); } catch (e) { return null; }
+  }
+
+  // Orden: ?lang= en la dirección, elección guardada, idioma del navegador, inglés.
+  function idiomaInicial() {
+    var param = new URLSearchParams(location.search).get('lang');
+    if (param && soportados.indexOf(param) >= 0) return param;
+    var g = guardado();
+    if (g && soportados.indexOf(g) >= 0) return g;
+    var lista = navigator.languages || [navigator.language || 'en'];
+    for (var i = 0; i < lista.length; i++) {
+      var codigo = String(lista[i]).toLowerCase().split('-')[0];
+      if (soportados.indexOf(codigo) >= 0) return codigo;
+    }
+    return 'en';
+  }
+
+  function mostrar(idioma, recordar) {
+    document.documentElement.lang = idioma;
+    document.title = titulos[idioma];
+    document.querySelectorAll('[data-idioma]').forEach(function (el) {
+      el.classList.toggle('visible', el.getAttribute('data-idioma') === idioma);
+    });
+    document.querySelectorAll('[data-elegir]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-elegir') === idioma));
+    });
+    if (recordar) {
+      try { localStorage.setItem('quirurdex-idioma', idioma); } catch (e) {}
+    }
+  }
+
+  document.querySelectorAll('[data-elegir]').forEach(function (b) {
+    b.addEventListener('click', function () { mostrar(b.getAttribute('data-elegir'), true); });
+  });
+
+  mostrar(idiomaInicial(), false);
+})();
+</script>
+<noscript><style>[data-idioma="es"] { display: block; }</style></noscript>
+</body>
+</html>
