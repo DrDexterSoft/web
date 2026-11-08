@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quirurdex — Registro de cirugías y procedimientos para médicos</title>
+<meta name="description" content="Registre sus cirugías y procedimientos y genere la hoja mensual para presentar a seguros y prepagas. Para ginecología, cirugía general y anestesiología.">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://dr-dex.net/quirurdex/">
+<link rel="icon" type="image/png" href="assets/icono.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Quirurdex">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://dr-dex.net/quirurdex/">
+<meta property="og:title" content="Quirurdex — Registro de cirugías y procedimientos para médicos">
+<meta property="og:description" content="Sus cirugías del mes, listas para presentar a la prepaga. Hoja A4 por seguro, copia automática en su Google Drive, sin cuentas ni contraseñas.">
+<meta property="og:image" content="https://dr-dex.net/quirurdex/assets/vista-previa.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Quirurdex — Registro de cirugías y procedimientos para médicos">
+<meta name="twitter:description" content="Sus cirugías del mes, listas para presentar a la prepaga.">
+<meta name="twitter:image" content="https://dr-dex.net/quirurdex/assets/vista-previa.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Quirurdex",
+  "url": "https://dr-dex.net/quirurdex/",
+  "description": "Registre sus cirugías y procedimientos y genere la hoja mensual para presentar a seguros y prepagas. Para ginecología y obstetricia, cirugía general y anestesiología.",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Android",
+  "inLanguage": "es",
+  "image": "https://dr-dex.net/quirurdex/assets/vista-previa.png",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.dexterlabs.quirurdex",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.dexterlabs.quirurdex",
+  "author": {"@type": "Person", "name": "Víctor Oviedo", "url": "https://dr-dex.net/"},
+  "publisher": {"@type": "Organization", "name": "DexterLabs", "url": "https://dr-dex.net/", "email": "support@dextorsuite.com"},
+  "offers": {"@type": "Offer", "price": "125000", "priceCurrency": "PYG"}
+}
+</script>
+
+<style>
+  :root {
+    --azul: #0060A8;
+    --azul-oscuro: #00497F;
+    --celeste: #4799E8;
+    --fondo: #F8FBFF;
+    --texto: #1B2733;
+    --suave: #5A6B7B;
+    --caja: #EFF6FD;
+    --linea: #D7E4F2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: var(--azul); }
+  .centro { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  header.sitio { background: var(--azul); color: #fff; }
+  header.sitio .centro {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap; padding-top: 14px; padding-bottom: 14px;
+  }
+  header.sitio .marca { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 20px; }
+  header.sitio img { width: 36px; height: 36px; border-radius: 9px; }
+  header.sitio nav a { color: #fff; text-decoration: none; margin-left: 18px; font-size: 15px; opacity: .92; }
+  header.sitio nav a:hover { opacity: 1; text-decoration: underline; }
+
+  .portada { padding: 52px 0 40px; }
+  .portada .centro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; align-items: center; }
+  h1 { font-size: clamp(2rem, 4.4vw, 3rem); line-height: 1.12; margin: 0 0 14px; letter-spacing: -.02em; }
+  .bajada { font-size: 1.15rem; color: var(--suave); margin: 0 0 24px; }
+  .boton {
+    display: inline-block; background: var(--azul); color: #fff; text-decoration: none;
+    padding: 14px 24px; border-radius: 12px; font-weight: 600;
+  }
+  .boton:hover { background: var(--azul-oscuro); }
+  .boton:focus-visible, a:focus-visible { outline: 3px solid var(--celeste); outline-offset: 3px; }
+  .nota { font-size: 14px; color: var(--suave); margin-top: 14px; }
+  .portada img.grafico { width: 100%; height: auto; border-radius: 18px; box-shadow: 0 14px 34px rgba(0,50,100,.18); }
+
+  section { padding: 40px 0; border-top: 1px solid var(--linea); }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 18px; letter-spacing: -.01em; }
+  h3 { margin: 0 0 8px; font-size: 1.1rem; }
+  .tarjetas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .tarjeta { background: var(--caja); border: 1px solid var(--linea); border-radius: 14px; padding: 18px 18px 14px; }
+  .tarjeta p { margin: 0; color: var(--suave); font-size: .97rem; }
+  ul.lista { margin: 0; padding-left: 20px; }
+  ul.lista li { margin: 6px 0; }
+  .dos { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .capturas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .capturas figure { margin: 0; }
+  .capturas img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--linea); background: #fff; }
+  .capturas figcaption { font-size: 13px; color: var(--suave); margin-top: 6px; text-align: center; }
+  details { border: 1px solid var(--linea); border-radius: 12px; padding: 12px 16px; margin: 10px 0; background: #fff; }
+  summary { cursor: pointer; font-weight: 600; }
+  details p { margin: 10px 0 0; color: var(--suave); }
+  footer { border-top: 1px solid var(--linea); padding: 28px 0 40px; color: var(--suave); font-size: 14px; }
+  footer p { margin: 6px 0; }
+
+  @media (max-width: 760px) {
+    .portada .centro, .dos { grid-template-columns: 1fr; }
+    .tarjetas { grid-template-columns: 1fr; }
+    .capturas { grid-template-columns: repeat(2, 1fr); }
+    header.sitio nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="sitio">
+  <div class="centro">
+    <div class="marca"><img src="assets/icono.png" alt="" width="36" height="36"> Quirurdex</div>
+    <nav aria-label="Principal">
+      <a href="#especialidades">Especialidades</a>
+      <a href="#hoja">La hoja del mes</a>
+      <a href="#datos">Sus datos</a>
+      <a href="politica-privacidad.html">Privacidad</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="portada">
+    <div class="centro">
+      <div>
+        <h1>Sus cirugías del mes, listas para presentar a la prepaga</h1>
+        <p class="bajada">Quirurdex es la forma simple de llevar el registro de sus cirugías y procedimientos y entregar cada mes la hoja a los seguros y prepagas, sin planillas en papel ni hojas de cálculo.</p>
+        <a class="boton" href="https://play.google.com/store/apps/details?id=com.dexterlabs.quirurdex">Disponible en Google Play</a>
+        <p class="nota">Para teléfonos Android. Sin cuentas, sin publicidad y sin rastreo.</p>
+      </div>
+      <img class="grafico" src="assets/vista-previa.png" width="1024" height="500" alt="Quirurdex: hoja A4 por seguro para imprimir o enviar, copia automática en su Google Drive, sin cuentas ni contraseñas">
+    </div>
+  </div>
+
+  <section id="especialidades">
+    <div class="centro">
+      <h2>Pensada para su especialidad</h2>
+      <p>Elija su especialidad al empezar y la app le pide exactamente los datos que necesita. Cada especialidad tiene sus propios registros y listas, y al cambiar no se pierde nada.</p>
+      <div class="tarjetas">
+        <div class="tarjeta"><h3>Ginecología y obstetricia</h3><p>Paciente, fecha, seguro, procedimiento y rol.</p></div>
+        <div class="tarjeta"><h3>Cirugía general</h3><p>Nombre, prepaga, fecha, número de cobertura, lugar, procedimiento y rol.</p></div>
+        <div class="tarjeta"><h3>Anestesiología</h3><p>Fecha, nombre, cédula, seguro, número de asegurado, cirugía, cirujano y sanatorio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="centro dos">
+      <div>
+        <h2>Carga rápida</h2>
+        <ul class="lista">
+          <li>La app aprende sola: seguros, cirujanos, lugares y sanatorios se suman a las sugerencias a medida que los usa.</li>
+          <li>Autocompletado de procedimientos y cirugías.</li>
+          <li>Rol en la cirugía (cirujano, primer o segundo ayudante, instrumentador u otro), con resumen del mes por rol.</li>
+          <li>Búsqueda por nombre del paciente en todos los meses.</li>
+        </ul>
+      </div>
+      <div id="hoja">
+        <h2>La hoja del mes, lista para presentar</h2>
+        <ul class="lista">
+          <li>Hoja A4 ordenada por fecha, con una página por cada seguro o prepaga.</li>
+          <li>Su nombre en el encabezado.</li>
+          <li>Imprimir directamente desde el teléfono, compartir el PDF o exportarlo a la carpeta Descargas.</li>
+          <li>Enviarla por correo a su computadora en un paso, con copia (CC) opcional, para imprimirla desde allí.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="centro">
+      <h2>Así se ve</h2>
+      <div class="capturas">
+        <figure><img src="assets/captura-especialidad.jpg" width="826" height="1600" loading="lazy" alt="Pantalla Especialidad: ginecología y obstetricia, cirugía general y anestesiología"><figcaption>Elija su especialidad</figcaption></figure>
+        <figure><img src="assets/captura-nueva-cirugia.jpg" width="824" height="1600" loading="lazy" alt="Formulario Nueva cirugía con paciente, seguro, procedimiento y rol"><figcaption>Cargue una cirugía</figcaption></figure>
+        <figure><img src="assets/captura-mes.jpg" width="818" height="1600" loading="lazy" alt="Pantalla del mes con los botones Imprimir mes, Compartir PDF y Exportar"><figcaption>El mes, listo para imprimir</figcaption></figure>
+        <figure><img src="assets/captura-configuracion.jpg" width="820" height="1600" loading="lazy" alt="Configuración con nombre del médico, seguros y copia de seguridad en Google Drive"><figcaption>Copia en su Google Drive</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="datos">
+    <div class="centro">
+      <h2>Sus datos, seguros</h2>
+      <ul class="lista">
+        <li>Todo se guarda en su teléfono: sin cuentas, sin registro y sin contraseñas.</li>
+        <li>Copia de seguridad automática en su propio Google Drive cada vez que guarda un registro. Si cambia o pierde el teléfono, instale Quirurdex, conecte la misma cuenta y sus registros vuelven solos.</li>
+        <li>Si no hay señal, guarda en el teléfono y sube la copia apenas vuelve la conexión.</li>
+        <li>Aviso si su Google Drive se está quedando sin espacio.</li>
+        <li>La app solo accede al archivo de respaldo que ella misma crea, nunca al resto de su Drive.</li>
+        <li>Sin publicidad y sin rastreo. Nosotros no recibimos ni vemos sus datos.</li>
+      </ul>
+      <p>Lea la <a href="politica-privacidad.html">política de privacidad</a> completa.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="centro">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>¿Necesito crear una cuenta?</summary>
+        <p>No. Quirurdex no tiene cuentas de usuario ni contraseñas. Los registros se guardan en su teléfono. La copia en Google Drive es opcional y usa su propia cuenta de Google.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si cambio de teléfono?</summary>
+        <p>Instale Quirurdex, active la copia en Google Drive con la misma cuenta y sus registros se recuperan solos.</p>
+      </details>
+      <details>
+        <summary>¿Puedo usarla sin conexión?</summary>
+        <p>Sí. Sin señal guarda en el teléfono y sube la copia a su Drive apenas vuelve la conexión.</p>
+      </details>
+      <details>
+        <summary>¿Puedo cambiar de especialidad más tarde?</summary>
+        <p>Sí. Cada especialidad tiene sus propios registros y listas, y lo cargado en la otra queda guardado.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="centro">
+    <p>Quirurdex fue creada por un médico, para médicos, a partir de la planilla que usaba todos los meses para cobrar sus cirugías.</p>
+    <p>Desarrollada por el Dr. Víctor Oviedo (DexterLabs), Paraguay · <a href="https://dr-dex.net/">dr-dex.net</a></p>
+    <p>Consultas y sugerencias: <a href="mailto:support@dextorsuite.com">support@dextorsuite.com</a> · <a href="politica-privacidad.html">Política de privacidad</a></p>
+    <p>Google Play y el logotipo de Google Play son marcas de Google LLC.</p>
+  </div>
+</footer>
+
+</body>
+</html>
